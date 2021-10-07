@@ -18,24 +18,17 @@
 export default {};
 </script>
 
-<style>
+<style lang="postcss" scoped>
 .custom-shape-divider-bottom-1633310099 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
+  @apply absolute bottom-0 left-0 w-full overflow-hidden;
   line-height: 0;
 }
 
 .custom-shape-divider-bottom-1633310099 svg {
-  position: relative;
-  display: block;
-  width: calc(101% + 1.3px);
-  height: 161px;
+  @apply relative block w-[calc(101%+1.3px)] h-[161px] shadow-2xl;
 }
 
 .custom-shape-divider-bottom-1633310099 .shape-fill {
-  fill: #ffffff;
+  @apply text-indigo-100 fill-current;
 }
 </style>
