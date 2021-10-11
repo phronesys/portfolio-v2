@@ -1,54 +1,74 @@
 <template>
   <section>
-    <header>
-      <h2>¿Por qué trabajar conmigo?</h2>
-    </header>
+    <h2>¿Por qué trabajar conmigo?</h2>
     <ul>
       <li>
-        <div class="w-80 h-80 bg-green-400 rounded-lg p-4 flex flex-col justify-between" >
-          <h4 class="text-white text-2xl">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita, neque.</h4>
-          <button class="bg-purple-500 text-white max-w-max px-4 py-2 rounded-lg">Click me</button>
-        </div>
-        <container-benefit colored>
+        <container colored>
           <template #title>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
-            repudiandae cum.
+            Me gusta crear una buena experiencia de usuario
           </template>
           <template #subtitle>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora aut
-            pariatur consectetur, mollitia doloribus ipsa temporibus rerum esse!
-            Quaerat, assumenda omnis. Autem tempora sapiente odit reiciendis
-            aspernatur temporibus, animi fuga!
+            <p>
+              Da igual con que uno arme un sitio, lo que importa es que se
+              sienta y se vea bien, potenciando la imagen tu negocio, sea cual
+              sea este!
+            </p>
           </template>
-        </container-benefit>
+          <template #footer>
+            <div class="text-gray-500 mb-4">
+              Sin dejar de lado la escalabilidad y mantenibilidad, claro!
+            </div>
+            <the-button secondary>Hablemos</the-button>
+          </template>
+        </container>
+        <the-card class="max-w-[300px]" secondary>
+          <template #title>¿Tienes un diseño en Figma?</template>
+          <template #body>
+            <div>Te puedo ayudar con el diseño y/o a pasarlo a código</div>
+          </template>
+          <template #footer>
+            <the-button primary> Diseños en figma </the-button>
+          </template>
+        </the-card>
       </li>
       <li>
-        <container-benefit colored left dark>
-          <template #title>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
-            repudiandae cum.
+        <the-card class="max-w-[300px]" primary>
+          <template #title>Suscríbete</template>
+          <template #body>
+            <div>Tu e-mail</div>
+            <the-input />
           </template>
+          <template #footer>
+            <the-button secondary>Anótame!</the-button>
+          </template>
+        </the-card>
+        <container colored left dark>
+          <template #title> Quiero compartir mis conocimientos </template>
           <template #subtitle>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora aut
-            pariatur consectetur, mollitia doloribus ipsa temporibus rerum esse!
-            Quaerat, assumenda omnis. Autem tempora sapiente odit reiciendis
-            aspernatur temporibus, animi fuga!
+            Tengo una sección con guías y tutoriales, orientadas al
+            desarrollador, los cuales entregan lo necesario para crear esa app
+            millonaria que tienes en mente.
           </template>
-        </container-benefit>
-        <div class="w-80 h-80 bg-purple-500 rounded-lg p-4 flex flex-col justify-between" >
-          <h4 class="text-white text-2xl">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita, neque.</h4>
-          <button class="ml-auto bg-green-400 text-white max-w-max px-4 py-2 rounded-lg">Click me</button>
-        </div>
+          <template #footer>
+            <the-button secondary>Ver blog</the-button>
+          </template>
+        </container>
       </li>
     </ul>
   </section>
 </template>
 
 <script>
-import ContainerBenefit from "../components/containers/ContainerBenefit.vue";
+import Container from "../components/Container.vue";
+import TheCard from "../components/Card.vue";
+import TheButton from "../components/Button.vue";
+import TheInput from "../components/Input.vue";
 export default {
   components: {
-    ContainerBenefit,
+    Container,
+    TheCard,
+    TheButton,
+    TheInput,
   },
 };
 </script>
@@ -58,14 +78,12 @@ section {
   @apply h-[1200px] bg-indigo-100 flex flex-col items-center justify-start pt-20;
 }
 section > ul {
-  @apply flex flex-col;
+  @apply flex flex-col h-screen;
 }
 section > ul > li {
-  @apply flex flex-row justify-between items-center gap-20 relative m-10;
+  @apply flex flex-row justify-between items-center gap-20 relative mx-10 my-2 w-[1200px] h-[500px];
 }
-section > header {
-}
-section > header > h2 {
-  @apply text-6xl font-bold text-transparent bg-gradient-to-r from-purple-500 to-green-400 bg-clip-text p-8 italic;
+section > h2 {
+  @apply text-5xl font-normal text-transparent bg-gradient-to-r to-purple-500 from-green-400 bg-clip-text p-8 italic;
 }
 </style>
