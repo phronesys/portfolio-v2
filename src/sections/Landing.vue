@@ -1,25 +1,36 @@
 <template>
   <section>
     <div>
-      <h1>¿Imaginas esa página que destacará tu marca 💪🏪?</h1>
+      <h1>¿Imaginas esa página que destacará tu marca?</h1>
       <h4>
         Si aun no lo haces, permíteme ayudar con la imagen y construcción de tu
-        sitio 😉
+        sitio
       </h4>
-      <button>Conversemos 🚀</button>
+      <the-button primary big>Conversemos 🚀</the-button>
     </div>
     <div class="image-1"></div>
-    <div class="image-2"><div></div></div>
+    <div class="image-2">
+      <div class="text-black text-left p-4 h-full justify-between">
+        <ul>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+        </ul>
+      </div>
+    </div>
     <section-divider class="!w-full"></section-divider>
   </section>
 </template>
 
 <script>
 import SectionDivider from "./utils/SectionDivider.vue";
+import TheButton from "../components/Button.vue";
 export default {
   name: "Landing",
   components: {
     SectionDivider,
+    TheButton,
   },
 };
 </script>
@@ -37,9 +48,6 @@ section > div h1 {
 }
 section > div h4 {
   @apply text-2xl w-2/3;
-}
-section > div button {
-  @apply bg-green-400 font-semibold text-xl px-6 py-3 text-white rounded-2xl w-56;
 }
 section > :is(.image-1, .image-2) {
   @apply absolute bg-gray-50 rounded-3xl h-[300px] w-[300px];
