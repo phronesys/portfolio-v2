@@ -7,13 +7,17 @@
       <li>Guides</li>
       <li>{{scrollPosition}}</li>
     </ul>
-    <button>Let's create!</button>
+    <the-button secondary big>Let's create!</the-button>
   </section>
 </template>
 
 <script>
+import TheButton from "./Button.vue";
 export default {
   name: "NavigationBar",
+  components: {
+    TheButton,
+  },
   props: {
     dark: {
       type: Boolean,
@@ -48,7 +52,5 @@ section > div {
 section > ul {
   @apply ml-auto mr-32 flex flex-row gap-8 text-lg font-medium;
 }
-section > button {
-  @apply bg-green-400 px-6 py-3 rounded-2xl text-white text-xl font-semibold;
-}
+
 </style>
