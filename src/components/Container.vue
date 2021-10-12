@@ -4,12 +4,12 @@
       <h2>
         <slot name="title" />
       </h2>
-      <h4>
-        <slot name="subtitle" />
-      </h4>
       <div>
-        <slot name="footer" />
+        <slot name="subtitle" />
       </div>
+      <footer>
+        <slot name="footer" />
+      </footer>
     </div>
   </div>
 </template>
@@ -56,7 +56,7 @@ export default {
 .text h2 {
   @apply text-5xl font-bold text-purple-500;
 }
-.text h4 {
+.text > div {
   @apply text-2xl text-gray-600;
 }
 
@@ -67,7 +67,7 @@ export default {
 .text.dark h2 {
   @apply text-green-400;
 }
-.text.dark h4 {
+.text.dark > div {
   @apply text-white;
 }
 </style>
