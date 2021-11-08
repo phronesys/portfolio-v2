@@ -38,10 +38,10 @@ button {
   @apply hover:border-white transition-colors duration-300 ease-linear;
 }
 button.primary {
-  @apply bg-green-400;
+  @apply bg-pink-600;
 }
 button.secondary {
-  @apply bg-purple-500;
+  @apply bg-purple-600;
 }
 button.light {
   @apply bg-white text-black;

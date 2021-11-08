@@ -1,8 +1,9 @@
 <template>
   <navigation-bar></navigation-bar>
   <section-landing></section-landing>
-  <section-why></section-why>
   <section-projects></section-projects>
+  <section-why></section-why>
+  <section-contact></section-contact>
 </template>
 
 <script>
@@ -10,6 +11,7 @@ import NavigationBar from "./components/NavigationBar.vue";
 import SectionLanding from "./sections/Landing.vue";
 import SectionWhy from "./sections/Why.vue";
 import SectionProjects from "./sections/Projects.vue";
+import SectionContact from "./sections/Contact.vue";
 
 export default { 
   name: "App",
@@ -18,6 +20,7 @@ export default {
     SectionLanding,
     SectionWhy,
     SectionProjects,
+    SectionContact,
   },
 };
 </script>
