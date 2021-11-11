@@ -17,7 +17,7 @@ export default {
 
 <style lang="postcss">
 .switch {
-  @apply relative inline-block w-10 h-6;
+  @apply relative inline-block w-6 h-4 lg:w-10 lg:h-6;
   & > input {
     @apply opacity-0 w-0 h-0;
     &:checked + .slide {
@@ -32,7 +32,8 @@ export default {
     @apply bg-gray-800 rounded-full border border-[#020202] hover:border-pink-600;
     @apply transition-all duration-200 ease-linear;
     &::before {
-      @apply content-[""] absolute h-6 w-6 left-[-1px] bottom-[-1px];
+      @apply content-[""] absolute h-4 w-4 left-[-5px] bottom-[-1px];
+      @apply lg:h-6 lg:w-6 lg:left-[-1px] lg:bottom-[-1px];
       @apply bg-[#020202] border border-pink-600 transition-all duration-200 rounded-full;
     }
   }

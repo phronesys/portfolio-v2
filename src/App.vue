@@ -1,9 +1,9 @@
 <template>
   <navigation-bar></navigation-bar>
   <section-landing></section-landing>
-  <section-projects></section-projects>
-  <section-why></section-why>
-  <section-contact></section-contact>
+  <!-- <section-projects></section-projects> -->
+  <!-- <section-why></section-why> -->
+  <!-- <section-contact></section-contact> -->
 </template>
 
 <script>
@@ -13,7 +13,7 @@ import SectionWhy from "./sections/Why.vue";
 import SectionProjects from "./sections/Projects.vue";
 import SectionContact from "./sections/Contact.vue";
 
-export default { 
+export default {
   name: "App",
   components: {
     NavigationBar,
@@ -26,9 +26,9 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Sarala:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sarala:wght@400;700&display=swap");
 #app {
-  font-family:"Sarala", Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Sarala", Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
