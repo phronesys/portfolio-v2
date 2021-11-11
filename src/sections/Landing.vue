@@ -1,72 +1,73 @@
 <template>
   <section>
-    <div>
-      <h1>¿Imaginas esa página que destacará tu marca?</h1>
-      <h4>
-        Si aun no lo haces, permíteme ayudar con la imagen y construcción de tu
-        sitio
-      </h4>
-      <the-button primary big>Conversemos 🚀</the-button>
+    <div class="left">
+      <h1>
+        Hi there! <br />
+        I'm Daniel Dazarola <br />a <span>Front End Developer</span>
+      </h1>
+      <h3>
+        I use the latest tech to build<br />
+        powerful <span>web applications</span>
+      </h3>
     </div>
-    <div class="image-1"></div>
-    <div class="image-2">
-      <div class="text-black text-left p-4 h-full justify-between">
-        <ul>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Lorem ipsum dolor sit amet.</li>
-        </ul>
-      </div>
+    <div class="right">
+      <div class="circle crimson"></div>
+      <div class="circle purple"></div>
+      <svg-landing></svg-landing>
     </div>
-    <section-divider class="!w-full"></section-divider>
   </section>
 </template>
 
 <script>
-import SectionDivider from "./utils/SectionDivider.vue";
-import TheButton from "../components/Button.vue";
+import SvgLanding from "../components/images/SvgLanding.vue";
 export default {
   name: "Landing",
   components: {
-    SectionDivider,
-    TheButton,
+    SvgLanding,
   },
 };
 </script>
 
 <style lang="postcss" scoped>
 section {
-  @apply bg-gradient-to-r from-green-400 to-purple-500;
-  @apply h-[800px] pt-24 relative flex justify-center items-center pb-80;
-}
-section > div {
-  @apply text-white flex flex-col gap-8 w-[800px] items-center text-center;
-}
-section > div h1 {
-  @apply text-6xl font-bold;
-}
-section > div h4 {
-  @apply text-2xl w-2/3;
-}
-section > :is(.image-1, .image-2) {
-  @apply absolute bg-gray-50 rounded-3xl h-[300px] w-[300px];
-}
-section > .image-1 {
-  @apply left-44 bottom-5 z-10;
-  background: url("../assets/building_websites.svg");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-section > .image-2 {
-  @apply right-20 top-32;
-  background: url("../assets/mobile_development.svg");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-section > .image-2 > div {
-  @apply bg-white w-80 h-80 absolute bottom-[-267px] -right-1 rounded-lg shadow-xl;
+  @apply bg-[#020202] h-[700px] w-full text-white px-8 pt-20 overflow-hidden;
+  @apply xl:h-[800px] xl:px-36 xl:flex-row;
+  @apply flex flex-col gap-10;
+  & .left {
+    @apply flex flex-col justify-center gap-4 z-[2];
+    @apply xl:w-3/4 xl:gap-10;
+    & h1 {
+      @apply text-3xl w-full leading-9;
+      @apply xl:text-7xl xl:leading-normal;
+      & span {
+        @apply text-green-500;
+      }
+    }
+    & h3 {
+      @apply text-xl leading-tight;
+      @apply xl:text-4xl;
+      & span {
+        @apply text-purple-600;
+      }
+    }
+  }
+  & .right {
+    @apply w-full relative flex flex-row justify-center items-center;
+    @apply xl:w-1/4 xl:flex-col;
+    & .circle {
+      @apply rounded-full absolute z-[0];
+      &.purple {
+        @apply bg-purple-600 left-[-30px] w-64 h-64;
+        @apply xl:w-[500px] xl:h-[500px] xl:top-[100px] xl:left-0;
+      }
+      &.crimson {
+        @apply bg-pink-600 right-0 w-52 h-52;
+        @apply xl:w-[475px] xl:h-[475px] xl:bottom-[150px];
+      }
+    }
+    & svg {
+      @apply z-[1];
+    }
+  }
 }
 </style>
