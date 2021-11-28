@@ -8,6 +8,11 @@
       <div />
     </div>
   </section>
+  <transition name="modal">
+    <div v-show="open && width < 640" class="modal">
+      <navigation-desktop></navigation-desktop>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -70,5 +75,17 @@ section {
       @apply -translate-y-2 rotate-45;
     }
   }
+}
+.modal {
+  @apply py-24 px-20 h-screen w-1/2 fixed right-0 translate-x-[500px] z-10;
+  @apply bg-gray-700;
+}
+.modal-enter-active,
+.modal-leave-active {
+ @apply transition-all duration-200 ease-linear;
+}
+.modal-enter-from,
+.modal-leave-to {
+  @apply translate-x-[-500px];
 }
 </style>
