@@ -7,7 +7,7 @@
   <ul>
     <li>About</li>
   </ul>
-  <the-button primary>Contact</the-button>
+  <the-button primary >Contact</the-button>
 </template>
 
 <script>
@@ -31,7 +31,7 @@ ul {
   @apply xl:text-lg xl:mr-8 xl:gap-8;
 }
 .language {
-  @apply ml-auto mr-8 flex flex-row items-center gap-4;
+  @apply ml-auto mr-8 flex flex-row items-center gap-4 min-w-[96px];
   & > svg {
     @apply w-5 h-5;
   }
