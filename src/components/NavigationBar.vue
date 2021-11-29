@@ -10,13 +10,14 @@
   </section>
   <transition name="modal">
     <div v-show="open && width < 640" class="modal">
-      <navigation-desktop></navigation-desktop>
+      <navigation-mobil></navigation-mobil>
     </div>
   </transition>
 </template>
 
 <script>
 import NavigationDesktop from "./NavigationDesktop.vue";
+import NavigationMobil from "./NavigationMobil.vue";
 import useBreakpoints from "../modules/useBreakpoints";
 import SvgLogo from "./images/SvgLogo.vue";
 
@@ -24,6 +25,7 @@ export default {
   name: "NavigationBar",
   components: {
     NavigationDesktop,
+    NavigationMobil,
     SvgLogo,
   },
   setup: () => {
@@ -77,15 +79,19 @@ section {
   }
 }
 .modal {
-  @apply py-24 px-20 h-screen w-1/2 fixed right-0 translate-x-[500px] z-10;
-  @apply bg-gray-700;
+  @apply py-24 h-screen w-[200px] fixed right-0 translate-x-0 z-10;
+  @apply bg-black text-white;
+  @apply flex flex-col gap-2 items-center;
+  & > .languages {
+    @apply !m-0;
+  }
 }
 .modal-enter-active,
 .modal-leave-active {
- @apply transition-all duration-200 ease-linear;
+  @apply transition-all duration-200 ease-linear;
 }
 .modal-enter-from,
 .modal-leave-to {
-  @apply translate-x-[-500px];
+  @apply translate-x-[100px];
 }
 </style>
