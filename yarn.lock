@@ -873,6 +873,11 @@
     "resolve" "^1.20.0"
     "tmp" "^0.2.1"
 
+"three@^0.135.0":
+  "integrity" "sha512-kuEpuuxRzLv0MDsXai9huCxOSQPZ4vje6y0gn80SRmQvgz6/+rI0NAvCRAw56zYaWKMGMfqKWsxF9Qa2Z9xymQ=="
+  "resolved" "https://registry.npmjs.org/three/-/three-0.135.0.tgz"
+  "version" "0.135.0"
+
 "tmp@^0.2.1":
   "integrity" "sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ=="
   "resolved" "https://registry.npmjs.org/tmp/-/tmp-0.2.1.tgz"

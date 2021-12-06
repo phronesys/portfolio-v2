@@ -1,69 +1,97 @@
 <template>
   <section class="dark">
     <svg-logo />
-    <div class="language">
-      <flag-spain></flag-spain>
-      <the-switch></the-switch>
-      <flag-usa></flag-usa>
+    <navigation-desktop v-if="width > 640"></navigation-desktop>
+    <div class="burger" :class="{ open }" v-else @click="showOptions">
+      <div />
+      <div />
+      <div />
     </div>
-    <ul>
-      <li>About</li>
-    </ul>
-    <the-button primary>Contact</the-button>
   </section>
+  <transition name="modal">
+    <div v-show="open && width < 640" class="modal">
+      <navigation-mobil></navigation-mobil>
+    </div>
+  </transition>
 </template>
 
 <script>
-import TheButton from "./Button.vue";
-import TheSwitch from "./Switch.vue";
+import NavigationDesktop from "./NavigationDesktop.vue";
+import NavigationMobil from "./NavigationMobil.vue";
+import useBreakpoints from "../modules/useBreakpoints";
 import SvgLogo from "./images/SvgLogo.vue";
-import FlagSpain from "./images/FlagSpain.vue";
-import FlagUsa from "./images/FlagUsa.vue";
+
 export default {
   name: "NavigationBar",
   components: {
+    NavigationDesktop,
+    NavigationMobil,
     SvgLogo,
-    TheButton,
-    FlagSpain,
-    FlagUsa,
-    TheSwitch,
+  },
+  setup: () => {
+    const { width, type } = useBreakpoints();
+    return {
+      width,
+      type,
+    };
   },
   data: () => ({
-    scrollPosition: 0,
+    openSidebar: false,
   }),
   computed: {
-    dark() {
-      return this.scrollPosition > 700;
+    open() {
+      return this.openSidebar;
     },
   },
   methods: {
-    updateScroll() {
-      this.scrollPosition = window.scrollY;
+    showOptions() {
+      this.openSidebar = !this.openSidebar;
     },
-  },
-  mounted() {
-    window.addEventListener("scroll", this.updateScroll);
   },
 };
 </script>
 
 <style lang="postcss" scoped>
 section {
-  @apply px-4 py-2 flex flex-row items-center fixed top-0 left-0 right-0 z-20;
+  @apply px-8 py-4 flex flex-row items-center fixed top-0 left-0 right-0 z-20;
   @apply xl:py-10 xl:px-36 w-full xl:h-20;
   @apply bg-black text-white transition-all duration-200 ease-linear;
   & > svg {
     @apply w-24 xl:w-32;
   }
-  & > ul {
-    @apply flex flex-row font-medium mr-4 gap-4 text-xs;
-    @apply xl:text-lg xl:mr-8 xl:gap-8;
-  }
-  & > .language {
-    @apply ml-auto mr-8 flex flex-row items-center gap-4;
-    & > svg {
-      @apply w-5 h-5;
+  & > .burger {
+    @apply w-6 h-4  relative ml-auto flex flex-col justify-between;
+    @apply cursor-pointer;
+    & > div {
+      @apply w-6 h-0.5 bg-white transition-all ease-linear duration-200;
     }
   }
+  & > .burger.open {
+    & > div:nth-child(1) {
+      @apply translate-y-1.5 -rotate-45;
+    }
+    & > div:nth-child(2) {
+      @apply bg-transparent;
+    }
+    & > div:nth-child(3) {
+      @apply -translate-y-2 rotate-45;
+    }
+  }
+}
+.modal {
+  @apply py-24 h-screen w-[200px] fixed right-0 translate-x-0 z-10;
+  @apply bg-black text-white;
+  @apply flex flex-col gap-2 items-center;
+  & > .languages {
+    @apply !m-0;
+  }
+}
+.modal-enter-active,
+.modal-leave-active {
+  @apply transition-all duration-200 ease-linear;
+}
+.modal-enter-from,
+.modal-leave-to {
+  @apply translate-x-[100px];
 }
 </style>

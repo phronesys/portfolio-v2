@@ -1,91 +1,80 @@
 <template>
   <section>
-    <div>
-      <h1>Proyectos</h1>
-      <ul>
-        <li>
-          <image></image>
-          <div>
-            <the-card class="left" primary>
-              <template #title>Project title</template>
-              <template #body
-                >Explicar en palabras simples que se soluciona o se crea con
-                este proyecto y que aprendí</template
-              >
-            </the-card>
-            <the-card class="right" secondary>
-              <template #body>
-                <div class="flex flex-col items-end gap-2">
-                  <label class="w-full flex flex-row gap-4 items-center">
-                    <the-button>DevTo</the-button>
-                    Blog page
-                  </label>
-                  <label class="w-full flex flex-row gap-4 items-center">
-                    <the-button>DevTo</the-button>
-                    Blog page
-                  </label>
-                  <label class="w-full flex flex-row gap-4 items-center">
-                    <the-button>DevTo</the-button>
-                    Blog page
-                  </label>
-                  <label class="w-full flex flex-row gap-4 items-center">
-                    <the-button>DevTo</the-button>
-                    Blog page
-                  </label>
-                </div>
-              </template>
-            </the-card>
-          </div>
-        </li>
-      </ul>
+    <h1>Proyectos</h1>
+    <div class="preview">
+      <img src="sad.gif" alt="" />
     </div>
+    <ul>
+      <li
+        v-for="(project, index) in projects"
+        :key="index"
+        :class="{ selected: selected === index }"
+        @click="selected = index"
+      >
+        <div class="text">
+          <h1>{{ project.title }}</h1>
+          <p>{{ project.description }}</p>
+        </div>
+      </li>
+    </ul>
   </section>
 </template>
 
-<script>
-import TheButton from "../components/Button.vue";
-import TheCard from "../components/Card.vue";
+<script setup>
+import { ref } from "vue";
 
-export default {
-  name: "Projects",
-  components: {
-    TheButton,
-    TheCard,
+const selected = ref(0);
+const projects = ref([
+  {
+    title: "Title of awesome project",
+    description: `This is a very short 
+    description of what this project is all about`,
   },
-};
+  {
+    title: "Title of awesome project",
+    description: `This is a very short 
+    description of what this project is all about`,
+  },
+  {
+    title: "Title of awesome project",
+    description: `This is a very short 
+    description of what this project is all about`,
+  },
+]);
 </script>
 
 <style lang="postcss" scoped>
 section {
-  @apply pt-20 h-[max-content] grid justify-items-center;
-  @apply bg-gradient-to-b from-indigo-100 to-green-400;
+  @apply px-8 py-20 h-[max-content] w-full text-white overflow-hidden z-[1];
+  @apply flex flex-col gap-5 items-center relative;
+  & > h1 {
+    @apply text-4xl font-medium;
+  }
+  & > .preview {
+    @apply bg-white w-full h-[360px] rounded-lg p-4;
+    & > img {
+      @apply rounded-lg h-full w-full;
+    }
+  }
+  & > ul {
+    @apply flex flex-col gap-4 w-full h-full;
+  }
 }
-section > div {
-  @apply p-10 flex flex-col gap-5 min-w-[300px] w-2/3 bg-black text-white shadow-2xl;
+section > ul > li {
+  @apply w-full h-24 px-4 flex flex-row gap-4 justify-between items-center;
+  @apply text-white bg-gray-700 rounded-lg border-l-8 border-green-500;
+  @apply transition-colors ease-linear duration-200 cursor-pointer;
+  &:is(:hover, .selected) {
+    @apply border-pink-600 bg-black;
+  }
+  & > .text {
+    @apply flex flex-col gap-2 w-56;
+    & > .h1 {
+      
+    }
+    & > p {
+      @apply text-xs;
+    }
+  }
 }
-section > div h1 {
-  @apply text-4xl;
-}
-section > div h2 {
-  @apply text-2xl;
-}
-section > div > ul {
-  @apply flex flex-col;
-}
-section > div > ul li {
-  @apply flex flex-col gap-4 items-end;
-}
-section > div > ul li > image {
-  @apply bg-white p-4 h-96 w-full flex flex-row rounded-xl;
-}
-section > div > ul li > div {
-  @apply flex flex-row gap-4;
-}
-section > div > ul li > div > .left {
-  @apply w-2/3;
-} 
-section > div > ul li > div > .right {
-  @apply w-1/3;
-}
-
 </style>

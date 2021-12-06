@@ -34,7 +34,7 @@ export default {
 
 <style lang="postcss" scoped>
 button {
-  @apply bg-black text-white text-xs px-1 py-0.5 max-w-max rounded border-2 border-transparent;
+  @apply bg-black text-white text-sm px-3 py-2 max-w-max rounded-lg border-2 border-transparent;
   @apply lg:px-4 lg:py-2 lg:rounded-lg;
   @apply hover:border-white transition-colors duration-300 ease-linear;
 }
