@@ -9,26 +9,21 @@
         I use the latest tech to build<br />
         powerful <span>web applications</span>
       </h3>
+      <the-button primary >See projects</the-button>
     </div>
   </section>
 </template>
 
-<script>
-import SvgLanding from "../components/images/SvgLanding.vue";
-export default {
-  name: "Landing",
-  components: {
-    SvgLanding,
-  },
-};
+<script setup>
+import TheButton from "../components/Button.vue";
 </script>
 
 <style lang="postcss" scoped>
 section {
-  @apply px-8 pt-20 bg-[#020202] h-[600px] w-full text-white overflow-hidden;
+  @apply px-8 py-20 bg-[#fff] h-[350px] w-full text-white overflow-hidden z-10;
   @apply flex flex-col gap-10;
   & .left {
-    @apply flex flex-col justify-center gap-4 z-[2];
+    @apply flex flex-col justify-center gap-6 z-[2];
     @apply xl:w-3/4 xl:gap-10;
     & h1 {
       @apply text-3xl w-full leading-9;
