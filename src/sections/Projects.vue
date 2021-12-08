@@ -15,6 +15,11 @@
           <h1>{{ project.title }}</h1>
           <p>{{ project.description }}</p>
         </div>
+        <div class="links">
+          <a :href="project.github" target="_blank">GitHub</a>
+          <a :href="project.figma" target="_blank">Figma</a>
+          <a :href="project.demo" target="_blank">Demo</a>
+        </div>
       </li>
     </ul>
   </section>
@@ -29,16 +34,25 @@ const projects = ref([
     title: "Title of awesome project",
     description: `This is a very short 
     description of what this project is all about`,
+    github: "https://github.com/",
+    figma: "https://figma.com/",
+    demo: "http://example.com/",
   },
   {
     title: "Title of awesome project",
     description: `This is a very short 
     description of what this project is all about`,
+    github: "https://github.com/",
+    figma: "https://figma.com/",
+    demo: "http://example.com/",
   },
   {
     title: "Title of awesome project",
     description: `This is a very short 
     description of what this project is all about`,
+    github: "https://github.com/",
+    figma: "https://figma.com/",
+    demo: "http://example.com/",
   },
 ]);
 </script>
@@ -66,14 +80,36 @@ section > ul > li {
   @apply transition-colors ease-linear duration-200 cursor-pointer;
   &:is(:hover, .selected) {
     @apply border-pink-600 bg-black;
+    & > .links > a {
+      @apply from-purple-400 via-white to-white;
+      &:hover {
+        @apply from-purple-400 via-purple-400 to-purple-400;
+      }
+      &:nth-child(3) {
+        @apply from-pink-500 via-white to-white;
+        &:hover {
+          @apply from-pink-500 to-pink-500;
+        }
+      }
+    }
   }
   & > .text {
     @apply flex flex-col gap-2 w-56;
     & > .h1 {
-      
     }
     & > p {
       @apply text-xs;
+    }
+  }
+  & > .links {
+    @apply text-white text-sm flex flex-col gap-2;
+    & > a {
+      @apply px-2 bg-gradient-to-r text-transparent bg-clip-text;
+      @apply from-white to-white transition-all ease-linear duration-300;
+
+      &:nth-child(3) {
+        @apply from-green-500 to-green-500;
+      }
     }
   }
 }
