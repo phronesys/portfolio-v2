@@ -2,28 +2,23 @@
   <navigation-bar></navigation-bar>
   <section-landing></section-landing>
   <section-projects></section-projects>
-  <!-- <section-why></section-why> -->
+  <section-skills></section-skills>
   <!-- <section-contact></section-contact> -->
   <div id="container"></div>
 </template>
 
-<script>
+<script setup>
 import NavigationBar from "./components/NavigationBar.vue";
 import SectionLanding from "./sections/Landing.vue";
 import SectionProjects from "./sections/Projects.vue";
+import SectionSkills from "./sections/Skills.vue";
+
+import { onMounted } from "vue";
 import { useThree } from "./modules/useThreeBackground";
 
-export default {
-  name: "App",
-  components: {
-    NavigationBar,
-    SectionLanding,
-    SectionProjects,
-  },
-  mounted() {
-    useThree("#container");
-  },
-};
+onMounted(() => {
+  useThree("#container");
+});
 </script>
 
 <style lang="postcss">
