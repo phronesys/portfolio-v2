@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>Proyectos</h1>
+    <h1>Projects</h1>
     <div class="preview">
       <img src="sad.gif" alt="" />
     </div>
@@ -59,13 +59,14 @@ const projects = ref([
 
 <style lang="postcss" scoped>
 section {
-  @apply px-8 py-20 h-[max-content] w-full text-white overflow-hidden z-[1];
-  @apply flex flex-col gap-5 items-center relative;
+  @apply h-[max-content] w-full text-white overflow-hidden z-[1];
+  @apply flex flex-col gap-5 items-center mx-auto relative;
+  @apply xs:w-11/12 sm:w-10/12;
   & > h1 {
     @apply text-4xl font-medium;
   }
   & > .preview {
-    @apply bg-white w-full h-[280px] rounded-lg p-4;
+    @apply bg-white w-3/4 h-3/4 rounded-lg p-4;
     & > img {
       @apply rounded-lg h-full w-full;
     }
@@ -75,9 +76,10 @@ section {
   }
 }
 section > ul > li {
-  @apply w-full h-40 p-4 flex flex-row gap-4 justify-between items-start;
+  @apply w-full mx-auto px-5 py-8 flex flex-row gap-4 justify-around items-start;
   @apply text-white bg-gray-700 rounded-lg border-l-8 border-green-500;
   @apply transition-colors ease-linear duration-200 cursor-pointer;
+  @apply xs:w-11/12 sm:w-10/12;
   &:is(:hover, .selected) {
     @apply border-pink-600 bg-black;
     & > .links > a {
@@ -95,14 +97,17 @@ section > ul > li {
   }
   & > .text {
     @apply flex flex-col gap-2 w-56;
-    & > .h1 {
+    & > h1 {
+      @apply text-base xs:text-lg sm:text-xl;
     }
     & > p {
-      @apply text-sm;
+      @apply text-sm sm:text-base;
     }
   }
   & > .links {
     @apply text-white text-sm flex flex-col gap-2;
+    @apply sm:text-base;
+
     & > a {
       @apply px-2 bg-gradient-to-r text-transparent bg-clip-text;
       @apply from-white to-white transition-all ease-linear duration-300;

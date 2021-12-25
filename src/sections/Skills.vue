@@ -1,11 +1,15 @@
 <template>
   <section>
-    <h1>My current stack</h1>
-    <p>
-      What matters is the good experience for the users and developers, so I'm
-      always exploring new ways to do so.
-    </p>
-    <p>I'm no UI/UX expert, but I've learned a lot by prototyping with Figma</p>
+    <div class="text">
+      <h1>My current stack</h1>
+      <p>
+        What matters is the good experience for the users and developers, so I'm
+        always exploring new ways to do so.
+      </p>
+      <p>
+        I'm no UI/UX expert, but I've learned a lot by prototyping with Figma
+      </p>
+    </div>
     <ul class="skill-list">
       <li v-for="skill in skills" :key="skill.title" :title="skill.title">
         <a :href="skill.link" target="_blank">
@@ -19,7 +23,6 @@
 <script setup>
 import { ref } from "vue";
 import TheSkills from "../components/Skills.vue";
-import TheCard from "../components/Card.vue";
 import TheButton from "../components/Button.vue";
 
 const skills = ref([
@@ -56,8 +59,8 @@ const skills = ref([
     link: "https://vitejs.dev/",
   },
   {
-    title: "Netlify",
-    link: "https://www.netlify.com/",
+    title: "React",
+    link: "https://reactjs.org/",
   },
   {
     title: "Git",
@@ -88,10 +91,13 @@ const skills = ref([
 
 <style lang="postcss" scoped>
 section {
-  @apply flex flex-col gap-4 py-20 relative z-10 px-8 mx-auto;
+  @apply flex flex-col gap-4 relative z-10;
   @apply text-white;
-  & > h1 {
-    @apply text-3xl text-green-500;
+  & > .text {
+    @apply text-center space-y-4;
+    & > h1 {
+      @apply text-3xl text-green-500;
+    }
   }
 }
 section > .skill-list {
