@@ -1,10 +1,11 @@
 <template>
-  <button :class="{ primary, secondary, light, small, big }">
+  <button :class="{ primary, secondary, light }">
     <slot />
   </button>
 </template>
 
 <script>
+import useBreakpoints from "../modules/useBreakpoints";
 export default {
   name: "Button",
   props: {
@@ -20,23 +21,22 @@ export default {
       type: Boolean,
       default: false,
     },
-    small: {
-      type: Boolean,
-      default: false,
-    },
-    big: {
-      type: Boolean,
-      default: false,
-    },
+  },
+  setup() {
+    const { type } = useBreakpoints();
+    return { type };
   },
 };
 </script>
 
 <style lang="postcss" scoped>
 button {
-  @apply bg-black text-white text-sm px-3 py-2 max-w-max rounded-lg border-2 border-transparent;
-  @apply lg:px-4 lg:py-2 lg:rounded-lg;
+  @apply bg-black text-white max-w-max border-2 border-transparent;
   @apply hover:border-white transition-colors duration-300 ease-linear;
+  @apply text-xs px-3 py-2 rounded-md;
+  @apply sm:text-sm;
+  @apply md:text-base sm:px-4 sm:py-3 md:rounded-lg;
+  @apply xl:text-xl xl:px-5 xl:py-4;
 }
 button.primary {
   @apply bg-pink-600;
@@ -46,8 +46,5 @@ button.secondary {
 }
 button.light {
   @apply bg-white text-black;
-}
-button.big {
-  @apply font-semibold text-xl px-6 py-3 rounded-2xl;
 }
 </style>

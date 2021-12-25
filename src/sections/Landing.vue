@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="left">
+    <div class="title">
       <h1>
         Hi there! <br />
         I'm Daniel Dazarola <br />a <span>Front End Developer</span>
@@ -9,7 +9,7 @@
         I use the latest tech to build<br />
         powerful <span>web applications</span>
       </h3>
-      <the-button primary >See projects</the-button>
+      <the-button primary>See projects</the-button>
     </div>
   </section>
 </template>
@@ -20,21 +20,20 @@ import TheButton from "../components/Button.vue";
 
 <style lang="postcss" scoped>
 section {
-  @apply px-8 py-20 bg-[#fff] h-[350px] w-full text-white overflow-hidden z-10;
-  @apply flex flex-col gap-10;
-  & .left {
-    @apply flex flex-col justify-center gap-6 z-[2];
-    @apply xl:w-3/4 xl:gap-10;
+  @apply px-8 py-20 relative w-full text-white overflow-hidden z-[1];
+  @apply flex flex-row justify-center gap-4;
+  & .title {
+    @apply flex flex-col gap-4;
     & h1 {
-      @apply text-3xl w-full leading-9;
-      @apply sm:text-5xl md:text-6xl xl:text-7xl lg:leading-normal;
+      @apply text-2xl leading-8;
+      @apply xs:text-4xl sm:text-5xl md:text-6xl xl:text-7xl lg:leading-normal;
       & span {
         @apply text-green-500;
       }
     }
     & h3 {
       @apply text-xl leading-tight;
-      @apply sm:text-2xl md:text-3xl lg:text-4xl;
+      @apply xs:text-2xl md:text-3xl lg:text-4xl;
       & span {
         @apply text-purple-600;
       }

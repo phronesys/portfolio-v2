@@ -65,7 +65,7 @@ section {
     @apply text-4xl font-medium;
   }
   & > .preview {
-    @apply bg-white w-full h-[360px] rounded-lg p-4;
+    @apply bg-white w-full h-[280px] rounded-lg p-4;
     & > img {
       @apply rounded-lg h-full w-full;
     }
@@ -75,7 +75,7 @@ section {
   }
 }
 section > ul > li {
-  @apply w-full h-24 px-4 flex flex-row gap-4 justify-between items-center;
+  @apply w-full h-40 p-4 flex flex-row gap-4 justify-between items-start;
   @apply text-white bg-gray-700 rounded-lg border-l-8 border-green-500;
   @apply transition-colors ease-linear duration-200 cursor-pointer;
   &:is(:hover, .selected) {
@@ -98,7 +98,7 @@ section > ul > li {
     & > .h1 {
     }
     & > p {
-      @apply text-xs;
+      @apply text-sm;
     }
   }
   & > .links {

@@ -88,14 +88,14 @@ const skills = ref([
 
 <style lang="postcss" scoped>
 section {
-  @apply flex flex-col gap-4 py-20 relative z-10 px-8;
+  @apply flex flex-col gap-4 py-20 relative z-10 px-8 mx-auto;
   @apply text-white;
   & > h1 {
     @apply text-3xl text-green-500;
   }
 }
 section > .skill-list {
-  @apply flex flex-row flex-wrap gap-4 mt-4;
+  @apply flex flex-row flex-wrap justify-center gap-4 mt-4;
   & > li {
     @apply cursor-pointer bg-white rounded-xl min-w-[32px] min-h-[32px] w-16 h-16;
     & > a {
