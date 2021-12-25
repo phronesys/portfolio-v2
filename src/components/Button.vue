@@ -1,5 +1,5 @@
 <template>
-  <button :class="{ primary, secondary, light }">
+  <button :class="{ primary, secondary, light, small }">
     <slot />
   </button>
 </template>
@@ -21,6 +21,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    small: {
+      type: Boolean,
+      default: false,
+    }
   },
   setup() {
     const { type } = useBreakpoints();
@@ -44,7 +48,13 @@ button.primary {
 button.secondary {
   @apply bg-purple-600;
 }
+button.tertiary {
+  @apply bg-green-500;
+}
 button.light {
   @apply bg-white text-black;
+}
+button.small {
+  @apply !text-sm !px-3 !py-2;
 }
 </style>
