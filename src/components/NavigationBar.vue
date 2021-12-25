@@ -55,7 +55,7 @@ export default {
 section {
   @apply px-8 py-4 flex flex-row items-center fixed top-0 left-0 right-0 z-20;
   @apply xl:py-10 xl:px-36 w-full xl:h-20;
-  @apply bg-black text-white transition-all duration-200 ease-linear;
+  @apply bg-gradient-to-t from-transparent to-black text-white transition-all duration-200 ease-linear;
   & > svg {
     @apply w-24 xl:w-32;
   }
