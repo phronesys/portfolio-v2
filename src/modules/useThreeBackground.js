@@ -55,9 +55,7 @@ function init(id) {
 
   const container = document.querySelector(id);
   container.appendChild(renderer.domElement);
-
-  document.body.style.touchAction = "none";
-  document.body.addEventListener("pointermove", onPointerMove);
+  container.addEventListener("pointermove", onPointerMove);
   window.addEventListener("resize", onWindowResize);
 }
 

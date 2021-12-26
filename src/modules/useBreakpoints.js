@@ -9,12 +9,13 @@ export default () => {
 
   const type = computed(() => {
     let value = windowWidth.value;
-    if (value < 640) return 'xs';
+    if (value < 440) return 'xxs';
+    if (value > 440 && value < 640) return 'xs';
     if (value > 640 && value < 768) return 'sm';
     if (value > 768 && value < 1024) return 'md';
     if (value > 1024 && value < 1280) return 'lg';
     if (value > 1280 && value < 1536) return 'xl';
-    if (value > 1536) return '2xl';
+    if (value > 1536) return 'xxl';
   })
 
   const width = computed(() => windowWidth.value);
