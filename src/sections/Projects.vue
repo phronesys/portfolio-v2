@@ -64,15 +64,18 @@ section {
   @apply xs:w-11/12 sm:w-10/12;
   & > h1 {
     @apply text-4xl font-medium;
+    @apply sm:text-5xl md:text-6xl xl:text-7xl;
   }
   & > .preview {
     @apply bg-white w-3/4 h-3/4 rounded-lg p-4;
+    @apply md:w-2/4 md:h-2/4 xl:w-2/5 xl:h-2/5 2xl:w-1/4 2xl:h-1/4 max-w-[575px];
     & > img {
       @apply rounded-lg h-full w-full;
     }
   }
   & > ul {
     @apply flex flex-col gap-4 w-full h-full;
+    @apply md:w-[550px] 2xl:w-[700px];
   }
 }
 section > ul > li {

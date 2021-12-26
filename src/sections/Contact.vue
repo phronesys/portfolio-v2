@@ -3,7 +3,7 @@
     <h1>Do you want to work with me?</h1>
     <ul class="contact-list">
       <li v-for="contact in contactList" :key="contact.title">
-        <a :href="contact.link" target="_blank">
+        <a :href="contact.link" target="_blank" :title="contact.title">
           <the-contact :name="contactTitle(contact)"></the-contact>
         </a>
       </li>
