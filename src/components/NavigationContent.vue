@@ -1,9 +1,9 @@
 <template>
   <div class="nav-content">
     <div class="language">
-      <flag-spain></flag-spain>
-      <the-switch></the-switch>
-      <flag-usa></flag-usa>
+      <flag-spain :class="{ selected: !english }"></flag-spain>
+      <the-switch v-model="english"></the-switch>
+      <flag-usa :class="{ selected: english }"></flag-usa>
     </div>
     <div class="buttons">
       <the-button small>About</the-button>
@@ -13,10 +13,13 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import TheButton from "./Button.vue";
 import TheSwitch from "./Switch.vue";
 import FlagSpain from "./images/FlagSpain.vue";
 import FlagUsa from "./images/FlagUsa.vue";
+
+const english = ref(false);
 </script>
 
 <style lang="postcss">
@@ -25,7 +28,11 @@ import FlagUsa from "./images/FlagUsa.vue";
   & .language {
     @apply flex flex-row items-center gap-4 min-w-[96px];
     & > svg {
-      @apply w-5 h-5;
+      @apply w-7 h-7 border-2 border-transparent rounded-full;
+      @apply transition-colors duration-200 ease-in;
+      &.selected {
+        @apply border-pink-600;
+      }
     }
   }
   & .buttons {
