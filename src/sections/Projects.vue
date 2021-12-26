@@ -2,7 +2,7 @@
   <section>
     <h1>Projects</h1>
     <div class="preview">
-      <img src="sad.gif" alt="" />
+      <img src="../../public/sad.gif" alt="" />
     </div>
     <ul>
       <li
