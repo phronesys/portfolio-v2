@@ -90,13 +90,14 @@ const skills = ref([
 
 <style lang="postcss" scoped>
 section {
-  @apply flex flex-col gap-20 relative z-10 mx-auto;
+  @apply flex flex-col gap-20 relative z-[2] mx-auto w-11/12;
   @apply lg:flex-row lg:justify-center lg:w-3/4 lg:gap-10;
   @apply xl:w-1/2;
   @apply text-white;
   & > .text {
     @apply text-center space-y-4 max-w-[300px] mx-auto;
-    @apply lg:min-w-[300px] xl:my-auto;
+    @apply bg-gray-900 p-4 rounded-lg bg-opacity-75;
+    @apply lg:min-w-[300px] lg:my-auto;
     & > h1 {
       @apply text-3xl text-green-500;
     }
@@ -104,8 +105,8 @@ section {
 }
 section > .skill-list {
   & > li {
-    @apply cursor-pointer bg-white rounded-xl min-w-[32px] min-h-[32px] w-16 h-16;
-
+    @apply cursor-pointer bg-gray-900 rounded-xl min-w-[32px] min-h-[32px] w-16 h-16;
+    @apply hover:bg-white filter hover:brightness-100 transition-colors duration-300 ease-linear;
     & > a {
       @apply w-full h-full grid place-items-center;
       & > svg {
