@@ -67,10 +67,11 @@ section {
     @apply flex flex-col gap-4 mx-auto;
     & > h1 {
       @apply text-4xl font-medium mx-auto;
-      @apply sm:text-5xl md:text-6xl xl:text-7xl;
+      @apply sm:text-4xl md:text-5xl xl:text-6xl;
     }
     & > .preview {
-      @apply bg-white rounded-lg p-4 aspect-square w-[300px];
+      @apply rounded-lg p-4 aspect-square min-w-[200px] w-[300px];
+      @apply bg-gradient-to-bl from-transparent via-gray-900 to-transparent;
       & > img {
         @apply rounded-lg h-full w-full;
       }
@@ -83,43 +84,35 @@ section {
 }
 section > ul > li {
   @apply w-full mx-auto px-5 py-8 flex flex-row gap-4 justify-around items-start;
-  @apply text-white bg-gray-700 rounded-lg border-l-8 border-green-500;
+  @apply text-white bg-gray-900 bg-opacity-50 rounded-lg border-l-8 border-green-500;
   @apply transition-colors ease-linear duration-200 cursor-pointer;
   @apply xs:w-11/12 sm:w-10/12;
-  &:is(:hover, .selected) {
-    @apply border-pink-600 bg-black;
-    & > .links > a {
-      @apply from-purple-400 via-white to-white;
-      &:hover {
-        @apply from-purple-400 via-purple-400 to-purple-400;
-      }
-      &:nth-child(3) {
-        @apply from-pink-500 via-white to-white;
-        &:hover {
-          @apply from-pink-500 to-pink-500;
-        }
-      }
-    }
-  }
+
   & > .text {
     @apply flex flex-col gap-2 w-56;
     & > h1 {
       @apply text-base xs:text-lg sm:text-xl;
     }
     & > p {
-      @apply text-sm sm:text-base;
+      @apply text-sm sm:text-base text-gray-400;
     }
   }
   & > .links {
     @apply text-white text-sm flex flex-col gap-2;
-    @apply sm:text-base;
+    @apply sm:text-base xl:text-lg;
 
     & > a {
       @apply px-2 bg-gradient-to-r text-transparent bg-clip-text;
-      @apply from-white to-white transition-all ease-linear duration-300;
-
-      &:nth-child(3) {
-        @apply from-green-500 to-green-500;
+      @apply transition-all ease-linear duration-300 from-gray-300 via-gray-400 to-gray-500;
+    }
+  }
+  &:hover,
+  &.selected {
+    @apply border-pink-600 bg-black;
+    & > .links > a {
+      @apply from-pink-200 via-purple-400 to-pink-400;
+      &:hover {
+        @apply from-purple-600 to-pink-500;
       }
     }
   }
