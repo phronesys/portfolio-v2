@@ -42,7 +42,7 @@ const contactList = ref([
 
 <style lang="postcss" scoped>
 section {
-  @apply relative z-10 mx-auto flex flex-col gap-10 text-center;
+  @apply relative z-[2] mx-auto flex flex-col gap-10 text-center;
   & > h1 {
     @apply text-2xl text-white;
   }
