@@ -1,8 +1,10 @@
 <template>
   <section>
-    <h1>Projects</h1>
-    <div class="preview">
-      <img src="../../public/sad.gif" alt="" />
+    <div class="head">
+      <h1>Preview</h1>
+      <div class="preview">
+        <img src="../../public/sad.gif" alt="" />
+      </div>
     </div>
     <ul>
       <li
@@ -60,17 +62,18 @@ const projects = ref([
 <style lang="postcss" scoped>
 section {
   @apply h-[max-content] w-full text-white overflow-hidden z-[1];
-  @apply flex flex-col gap-5 items-center mx-auto relative;
-  @apply xs:w-11/12 sm:w-10/12;
-  & > h1 {
-    @apply text-4xl font-medium;
-    @apply sm:text-5xl md:text-6xl xl:text-7xl;
-  }
-  & > .preview {
-    @apply bg-white w-3/4 h-3/4 rounded-lg p-4;
-    @apply md:w-2/4 md:h-2/4 xl:w-2/5 xl:h-2/5 2xl:w-1/4 2xl:h-1/4 max-w-[575px];
-    & > img {
-      @apply rounded-lg h-full w-full;
+  @apply flex flex-col lg:w-11/12 xl:w-[950px] 2xl:w-[1200px] lg:flex-row-reverse gap-5 items-center mx-auto relative;
+  & > .head {
+    @apply flex flex-col gap-4 mx-auto;
+    & > h1 {
+      @apply text-4xl font-medium mx-auto;
+      @apply sm:text-5xl md:text-6xl xl:text-7xl;
+    }
+    & > .preview {
+      @apply bg-white rounded-lg p-4 aspect-square w-[300px];
+      & > img {
+        @apply rounded-lg h-full w-full;
+      }
     }
   }
   & > ul {
