@@ -12,7 +12,6 @@
 </template>
 
 <script setup>
-import TheButton from "../components/Button.vue";
 </script>
 
 <style lang="postcss" scoped>

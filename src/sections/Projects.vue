@@ -62,16 +62,17 @@ const projects = ref([
 <style lang="postcss" scoped>
 section {
   @apply h-[max-content] w-full text-white overflow-hidden z-[1];
-  @apply flex flex-col lg:w-11/12 xl:w-[950px] 2xl:w-[1200px] lg:flex-row-reverse gap-5 items-center mx-auto relative;
+  @apply flex flex-col gap-5 items-center mx-auto relative;
+  @apply lg:w-11/12 xl:w-[950px] 2xl:w-[1200px] lg:flex-row-reverse;
   & > .head {
     @apply flex flex-col gap-4 mx-auto;
     & > h1 {
       @apply text-4xl font-medium mx-auto;
-      @apply sm:text-4xl md:text-5xl xl:text-6xl;
+      @apply xl:text-5xl;
     }
     & > .preview {
       @apply rounded-lg p-4 aspect-square min-w-[200px] w-[300px];
-      @apply bg-gradient-to-bl from-transparent via-gray-900 to-transparent;
+      @apply bg-gray-900/20 shadow-inner shadow-pink-500/20;
       & > img {
         @apply rounded-lg h-full w-full;
       }
@@ -84,7 +85,8 @@ section {
 }
 section > ul > li {
   @apply w-full mx-auto px-5 py-8 flex flex-row gap-4 justify-around items-start;
-  @apply text-white bg-gray-900 bg-opacity-50 rounded-lg border-l-8 border-green-500;
+  @apply text-white bg-gray-900/50 rounded-lg border-l-8 border-green-500;
+  @apply shadow-inner shadow-green-500/20;
   @apply transition-colors ease-linear duration-200 cursor-pointer;
   @apply xs:w-11/12 sm:w-10/12;
 
@@ -109,6 +111,7 @@ section > ul > li {
   &:hover,
   &.selected {
     @apply border-pink-600 bg-black;
+    @apply shadow-pink-500/50;
     & > .links > a {
       @apply from-pink-200 via-purple-400 to-pink-400;
       &:hover {

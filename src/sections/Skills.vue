@@ -10,10 +10,15 @@
         I'm no UI/UX expert, but I've learned a lot by prototyping with Figma
       </p>
     </div>
-    <ul class="skill-list">
-      <li v-for="skill in skills" :key="skill.title" :title="skill.title">
+    <ul class="skill-list" ref="skillList">
+      <li
+        v-for="(skill, index) in skills"
+        :key="skill.title"
+        :title="skill.title"
+        :class="{ focus: focus === index }"
+      >
         <a :href="skill.link" target="_blank">
-          <the-skills :name="skill.title.toLowerCase()"></the-skills>
+          <icon-skills :name="skill.title.toLowerCase()"></icon-skills>
         </a>
       </li>
     </ul>
@@ -21,9 +26,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import TheSkills from "../components/Skills.vue";
+import { ref, watch } from "vue";
+import IconSkills from "../components/IconSkills.vue";
+import { useElementVisibility } from "@vueuse/core";
 
+const focus = ref(0);
+const skillList = ref(null);
+const areSkillsVisible = useElementVisibility(skillList);
 const skills = ref([
   {
     title: "Vue",
@@ -86,6 +95,18 @@ const skills = ref([
     link: "https://www.npmjs.com/",
   },
 ]);
+
+const length = skills.value.length;
+const startInterval = () => {
+  setInterval(() => {
+    if (length === focus.value) focus.value = 0;
+    else focus.value++;
+  }, 1000);
+  stop();
+};
+const stop = watch(areSkillsVisible, () => {
+  startInterval();
+});
 </script>
 
 <style lang="postcss" scoped>
@@ -96,7 +117,7 @@ section {
   @apply text-white;
   & > .text {
     @apply text-center space-y-4 max-w-[300px] mx-auto;
-    @apply bg-gray-900 p-4 rounded-lg bg-opacity-75;
+    @apply bg-gray-900/75 p-4 rounded-lg shadow-inner shadow-green-500/20;
     @apply lg:min-w-[300px] lg:my-auto;
     & > h1 {
       @apply text-3xl text-green-500;
@@ -105,8 +126,12 @@ section {
 }
 section > .skill-list {
   & > li {
-    @apply cursor-pointer bg-gray-900 rounded-xl min-w-[32px] min-h-[32px] w-16 h-16;
-    @apply hover:bg-white filter hover:brightness-100 transition-colors duration-300 ease-linear;
+    @apply cursor-pointer bg-gray-900/80 shadow-inner shadow-green-500/20  rounded-xl min-w-[32px] min-h-[32px] w-16 h-16;
+    @apply filter transition-colors duration-300 ease-linear;
+    &:hover,
+    &.focus {
+      @apply bg-white shadow-lg shadow-pink-500;
+    }
     & > a {
       @apply w-full h-full grid place-items-center;
       & > svg {
@@ -141,34 +166,34 @@ section > .skill-list {
       grid-area: e;
     }
     &:nth-child(6) {
-      grid-area: f;
-    }
-    &:nth-child(7) {
-      grid-area: g;
-    }
-    &:nth-child(8) {
-      grid-area: h;
-    }
-    &:nth-child(9) {
       grid-area: i;
     }
-    &:nth-child(10) {
-      grid-area: j;
+    &:nth-child(7) {
+      grid-area: f;
     }
-    &:nth-child(11) {
+    &:nth-child(8) {
+      grid-area: g;
+    }
+    &:nth-child(9) {
+      grid-area: h;
+    }
+    &:nth-child(10) {
       grid-area: k;
     }
-    &:nth-child(12) {
+    &:nth-child(11) {
       grid-area: l;
     }
-    &:nth-child(13) {
+    &:nth-child(12) {
       grid-area: m;
     }
-    &:nth-child(14) {
+    &:nth-child(13) {
       grid-area: n;
     }
-    &:nth-child(15) {
+    &:nth-child(14) {
       grid-area: o;
+    }
+    &:nth-child(15) {
+      grid-area: j;
     }
   }
 }

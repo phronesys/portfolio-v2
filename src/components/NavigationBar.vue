@@ -17,7 +17,7 @@
 import NavigationContent from "./NavigationContent.vue";
 import NavigationModal from "./NavigationModal.vue";
 import useBreakpoints from "../modules/useBreakpoints";
-import SvgLogo from "./images/SvgLogo.vue";
+import SvgLogo from "./svg/SvgLogo.vue";
 
 export default {
   name: "NavigationBar",
