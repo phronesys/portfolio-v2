@@ -1,23 +1,23 @@
 <template>
   <div class="nav-content">
     <div class="language">
-      <flag-spain :class="{ selected: !english }"></flag-spain>
-      <the-switch v-model="english"></the-switch>
-      <flag-usa :class="{ selected: english }"></flag-usa>
+      <svg-flag-spain :class="{ selected: !english }"></svg-flag-spain>
+      <base-switch v-model="english"></base-switch>
+      <svg-flag-usa :class="{ selected: english }"></svg-flag-usa>
     </div>
     <div class="buttons">
-      <the-button small>About</the-button>
-      <the-button primary small>Contact</the-button>
+      <base-button small>About</base-button>
+      <base-button primary small>Contact</base-button>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import TheButton from "./Button.vue";
-import TheSwitch from "./Switch.vue";
-import FlagSpain from "./images/FlagSpain.vue";
-import FlagUsa from "./images/FlagUsa.vue";
+import BaseButton from "./BaseButton.vue";
+import BaseSwitch from "./BaseSwitch.vue";
+import SvgFlagSpain from "./svg/SvgFlagSpain.vue";
+import SvgFlagUsa from "./svg/SvgFlagUsa.vue";
 
 const english = ref(false);
 </script>

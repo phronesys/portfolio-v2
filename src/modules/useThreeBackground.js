@@ -79,10 +79,10 @@ function render() {
   camera.position.x += (mouseX - camera.position.x) * 0.001;
   camera.position.y += (-mouseY - camera.position.y) * 0.001;
   if (increaseCameraZ) {
-    camera.position.z += 0.08;
+    camera.position.z += 0.02;
     if (camera.position.z >= 1000) increaseCameraZ = false;
   } else {
-    camera.position.z -= 0.08;
+    camera.position.z -= 0.02;
     if (camera.position.z <= 0) increaseCameraZ = true;
   }
 
