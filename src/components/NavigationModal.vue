@@ -7,10 +7,10 @@
 </template>
 
 <script setup>
-import TheButton from "./Button.vue";
-import TheSwitch from "./Switch.vue";
-import FlagSpain from "./images/FlagSpain.vue";
-import FlagUsa from "./images/FlagUsa.vue";
+const props = defineProps({
+  open: Boolean,
+  width: Number
+})
 </script>
 
 <style lang="postcss" scoped>
