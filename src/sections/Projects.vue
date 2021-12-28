@@ -1,8 +1,10 @@
 <template>
   <section>
-    <h1>Projects</h1>
-    <div class="preview">
-      <img src="../../public/sad.gif" alt="" />
+    <div class="head">
+      <h1>Preview</h1>
+      <div class="preview">
+        <img src="../../public/sad.gif" alt="" />
+      </div>
     </div>
     <ul>
       <li
@@ -60,60 +62,57 @@ const projects = ref([
 <style lang="postcss" scoped>
 section {
   @apply h-[max-content] w-full text-white overflow-hidden z-[1];
-  @apply flex flex-col gap-5 items-center mx-auto relative;
-  @apply xs:w-11/12 sm:w-10/12;
-  & > h1 {
-    @apply text-4xl font-medium;
-  }
-  & > .preview {
-    @apply bg-white w-3/4 h-3/4 rounded-lg p-4;
-    & > img {
-      @apply rounded-lg h-full w-full;
+  @apply flex flex-col lg:w-11/12 xl:w-[950px] 2xl:w-[1200px] lg:flex-row-reverse gap-5 items-center mx-auto relative;
+  & > .head {
+    @apply flex flex-col gap-4 mx-auto;
+    & > h1 {
+      @apply text-4xl font-medium mx-auto;
+      @apply sm:text-4xl md:text-5xl xl:text-6xl;
+    }
+    & > .preview {
+      @apply rounded-lg p-4 aspect-square min-w-[200px] w-[300px];
+      @apply bg-gradient-to-bl from-transparent via-gray-900 to-transparent;
+      & > img {
+        @apply rounded-lg h-full w-full;
+      }
     }
   }
   & > ul {
     @apply flex flex-col gap-4 w-full h-full;
+    @apply md:w-[550px] 2xl:w-[700px];
   }
 }
 section > ul > li {
   @apply w-full mx-auto px-5 py-8 flex flex-row gap-4 justify-around items-start;
-  @apply text-white bg-gray-700 rounded-lg border-l-8 border-green-500;
+  @apply text-white bg-gray-900 bg-opacity-50 rounded-lg border-l-8 border-green-500;
   @apply transition-colors ease-linear duration-200 cursor-pointer;
   @apply xs:w-11/12 sm:w-10/12;
-  &:is(:hover, .selected) {
-    @apply border-pink-600 bg-black;
-    & > .links > a {
-      @apply from-purple-400 via-white to-white;
-      &:hover {
-        @apply from-purple-400 via-purple-400 to-purple-400;
-      }
-      &:nth-child(3) {
-        @apply from-pink-500 via-white to-white;
-        &:hover {
-          @apply from-pink-500 to-pink-500;
-        }
-      }
-    }
-  }
+
   & > .text {
     @apply flex flex-col gap-2 w-56;
     & > h1 {
       @apply text-base xs:text-lg sm:text-xl;
     }
     & > p {
-      @apply text-sm sm:text-base;
+      @apply text-sm sm:text-base text-gray-400;
     }
   }
   & > .links {
     @apply text-white text-sm flex flex-col gap-2;
-    @apply sm:text-base;
+    @apply sm:text-base xl:text-lg;
 
     & > a {
       @apply px-2 bg-gradient-to-r text-transparent bg-clip-text;
-      @apply from-white to-white transition-all ease-linear duration-300;
-
-      &:nth-child(3) {
-        @apply from-green-500 to-green-500;
+      @apply transition-all ease-linear duration-300 from-gray-300 via-gray-400 to-gray-500;
+    }
+  }
+  &:hover,
+  &.selected {
+    @apply border-pink-600 bg-black;
+    & > .links > a {
+      @apply from-pink-200 via-purple-400 to-pink-400;
+      &:hover {
+        @apply from-purple-600 to-pink-500;
       }
     }
   }

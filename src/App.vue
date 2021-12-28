@@ -33,7 +33,7 @@ onMounted(() => {
   -moz-osx-font-smoothing: grayscale;
 }
 .main {
-  @apply px-8 py-32 flex flex-col gap-40 z-10;
+  @apply px-8 py-32 flex flex-col gap-40 z-10 lg:gap-60 xl:gap-80 2xl:gap-[400px];
 }
 #container {
   @apply bg-black fixed z-0 top-0 left-0 right-0 bottom-0;

@@ -1,18 +1,23 @@
 <template>
   <label class="switch">
-    <input type="checkbox" @click="aLog" :checked="true" />
+    <input type="checkbox" v-model="value" />
     <span class="slide" />
   </label>
 </template>
 
-<script>
-export default {
-  methods: {
-    aLog(){
-      console.log("clicked");
-    }
-  }
-};
+<script setup>
+import { computed } from "vue";
+
+const props = defineProps({
+  modelValue: Boolean
+})
+
+const emit = defineEmits(['update:modelValue'])
+
+const value = computed({
+  get: () => props.modelValue,
+  set: (value) => emit('update:modelValue', value),
+})
 </script>
 
 <style lang="postcss">
@@ -21,7 +26,7 @@ export default {
   & > input {
     @apply opacity-0 w-0 h-0;
     &:checked + .slide {
-      @apply bg-pink-600;
+      @apply bg-pink-600 border-pink-600;
       &::before {
         @apply transform translate-x-4;
       }
