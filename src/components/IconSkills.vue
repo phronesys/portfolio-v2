@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import * as Skills from "./skills/index";
+import * as Skills from "./svg/skills/index";
 import { computed } from "vue";
 
 const props = defineProps({

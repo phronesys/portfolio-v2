@@ -7,7 +7,7 @@
 <script>
 import useBreakpoints from "../modules/useBreakpoints";
 export default {
-  name: "Button",
+  name: "BaseButton",
   props: {
     primary: {
       type: Boolean,

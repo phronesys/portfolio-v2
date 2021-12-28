@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import * as Contact from "./contact/index";
+import * as Contact from "./svg/contact/index";
 import { computed } from "vue";
 
 const props = defineProps({
