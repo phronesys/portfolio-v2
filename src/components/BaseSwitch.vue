@@ -6,7 +6,8 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
 const props = defineProps({
   modelValue: Boolean
@@ -18,6 +19,17 @@ const value = computed({
   get: () => props.modelValue,
   set: (value) => emit('update:modelValue', value),
 })
+
+/* i18n control */
+
+const { locale } = useI18n({
+  inheritLocale: true,
+  useScope: "global",
+});
+
+watch(value, (value) => {
+  value ? (locale.value = "en") : (locale.value = "es");
+});
 </script>
 
 <style lang="postcss">
