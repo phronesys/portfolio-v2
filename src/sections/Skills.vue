@@ -47,8 +47,8 @@ const skills = ref([
     link: "https://figma.com/",
   },
   {
-    title: "Chrome",
-    link: "https://developer.chrome.com/",
+    title: "Angular",
+    link: "https://angular.io/",
   },
   {
     title: "Nuxt",

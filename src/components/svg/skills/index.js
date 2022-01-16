@@ -1,4 +1,4 @@
-export { default as Chrome } from "./Chrome.vue";
+export { default as Angular } from "./Angular.vue";
 export { default as Figma } from "./Figma.vue";
 export { default as Git } from "./Git.vue";
 export { default as Jest } from "./Jest.vue";

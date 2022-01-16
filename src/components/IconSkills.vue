@@ -11,7 +11,7 @@ const props = defineProps({
 });
 
 const skills = {
-  chrome: Skills.Chrome,
+  angular: Skills.Angular,
   figma: Skills.Figma,
   git: Skills.Git,
   jest: Skills.Jest,
