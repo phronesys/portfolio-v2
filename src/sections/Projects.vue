@@ -3,7 +3,7 @@
     <div class="head">
       <h1>Preview</h1>
       <div class="preview">
-        <img src="../../public/sad.gif" alt="" />
+        <img src="../../sad.gif" alt="" />
       </div>
     </div>
     <ul>
