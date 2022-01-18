@@ -43,21 +43,21 @@ const projects = ref([
     github: "https://github.com/phronesys/hou-movies",
     figma: "https://figma.com/",
     demo: "https://hou-movies.vercel.app/",
-    previewPath: "../../public/houmovies.gif",
+    previewPath: "../../houmovies.gif",
   },
   {
     title: "Giftty  🎁🔍",
     github: "https://github.com/phronesys/tenor-angular",
     figma: "https://figma.com/",
     demo: "https://giftty.netlify.app/",
-    previewPath: "../../public/giftty.gif",
+    previewPath: "../../giftty.gif",
   },
   {
     title: "Pokedex  👾👾👾",
     github: "https://github.com/phronesys/pokedex-v2",
     figma: "https://figma.com/",
     demo: "https://pokedex-gen01.netlify.app/",
-    previewPath: "../../public/pokedex.gif",
+    previewPath: "../../pokedex.gif",
   },
 ]);
 
