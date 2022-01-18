@@ -1,14 +1,9 @@
 <template>
   <section>
     <div class="text">
-      <h1>My current stack</h1>
-      <p>
-        What matters is the good experience for the users and developers, so I'm
-        always exploring new ways to do so.
-      </p>
-      <p>
-        I'm no UI/UX expert, but I've learned a lot by prototyping with Figma
-      </p>
+      <h1>{{ t("title") }}</h1>
+      <p>{{ t("p1") }}</p>
+      <p>{{ t("p2") }}</p>
     </div>
     <ul class="skill-list" ref="skillList">
       <li
@@ -29,6 +24,13 @@
 import { ref, watch } from "vue";
 import IconSkills from "../components/IconSkills.vue";
 import { useElementVisibility } from "@vueuse/core";
+import { useI18n } from "vue-i18n";
+
+const { t, locale } = useI18n({
+  inheritLocale: true,
+});
+
+locale.value = "es";
 
 const focus = ref(0);
 const skillList = ref(null);
@@ -108,6 +110,17 @@ const stop = watch(areSkillsVisible, () => {
   startInterval();
 });
 </script>
+
+<i18n lang="yaml">
+es:
+  title: "Mi stack actual"
+  p1: "Lo que importa es la buena experiencia para usuarios como para desarrolladores, por lo que siempre ando buscando nuevas formas de generarla"
+  p2: "No soy un experto en UI/UX, pero he aprendido harto prototipando con Figma"
+en:
+  title: "My current stack"
+  p1: "What matters is the good experience for the users and developers, so I'm always exploring new ways to do so."
+  p2: "I'm no UI/UX expert, but I've learned a lot by prototyping with Figma"
+</i18n>
 
 <style lang="postcss" scoped>
 section {
