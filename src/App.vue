@@ -4,7 +4,7 @@
     <section-landing></section-landing>
     <section-projects></section-projects>
     <section-skills></section-skills>
-    <section-contact></section-contact>
+    <section-contact id="contact"></section-contact>
   </div>
 
   <div id="container"></div>
@@ -37,5 +37,8 @@ onMounted(() => {
 }
 #container {
   @apply bg-black fixed z-0 top-0 left-0 right-0 bottom-0;
+}
+html {
+  scroll-behavior: smooth;
 }
 </style>

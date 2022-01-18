@@ -1,24 +1,50 @@
 <template>
   <section>
     <h1>
-      Hi there! <br />
-      I'm Daniel Dazarola <br /><span>a Front End Developer</span>
+      {{ t("title.greeting") }} <br />
+      {{ t("title.name") }} <br /><span>{{ t("title.job") }}</span>
     </h1>
     <h3>
-      I use the latest tech to build<br />
-      <span>powerful web applications</span>
+      {{ t("subtitle.verb") }}<br />
+      <span>{{ t("subtitle.subject") }}</span>
     </h3>
   </section>
 </template>
 
 <script setup>
+import { useI18n } from "vue-i18n";
+
+const { t, locale } = useI18n({
+  inheritLocale: true,
+});
+
+locale.value = "es";
 </script>
+
+<i18n lang="yaml">
+es:
+  title:
+    greeting: "Hola que tal! "
+    name: "Soy Daniel Dazarola"
+    job: "un Desarrollador Front End"
+  subtitle:
+    verb: "Uso las últimas tecnologías para armar "
+    subject: "poderosas aplicaciones web"
+en:
+  title:
+    greeting: "Hi there! "
+    name: "I'm Daniel Dazarola"
+    job: "a Front End Developer"
+  subtitle:
+    verb: "I use the latest tech to build"
+    subject: "powerful web applications"
+</i18n>
 
 <style lang="postcss" scoped>
 section {
   @apply relative w-max text-white overflow-hidden z-[1];
   @apply flex flex-col gap-4 mx-auto;
-  @apply bg-gradient-to-r from-black to-transparent opacity-90;  
+  @apply bg-gradient-to-r from-black to-transparent opacity-90;
   @apply lg:gap-10;
   & h1 {
     @apply text-2xl leading-8;

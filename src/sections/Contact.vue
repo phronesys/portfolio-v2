@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>Do you want to work with me?</h1>
+    <h1>{{ t("title") }}</h1>
     <ul class="contact-list">
       <li v-for="contact in contactList" :key="contact.title">
         <a :href="contact.link" target="_blank" :title="contact.title">
@@ -9,20 +9,29 @@
       </li>
     </ul>
     <form action="">
-      <h4>Let me know how can I help</h4>
+      <h4>{{ t("subtitle") }}</h4>
       <base-input />
-      <base-textarea></base-textarea>
-      <base-button primary @click.prevent="submitEmail"> Submit </base-button>
+      <base-textarea :placeholder="t('textarea')"></base-textarea>
+      <base-button primary @click.prevent="submitEmail">
+        {{ t("button") }}
+      </base-button>
     </form>
   </section>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 import IconContact from "../components/IconContact.vue";
 import BaseInput from "../components/BaseInput.vue";
 import BaseTextarea from "../components/BaseTextarea.vue";
 import BaseButton from "../components/BaseButton.vue";
+
+const { t, locale } = useI18n({
+  inheritLocale: true,
+});
+
+locale.value = "es";
 
 const contactTitle = (contact) => contact.title.toLowerCase();
 const submitEmail = () => {
@@ -39,6 +48,19 @@ const contactList = ref([
   },
 ]);
 </script>
+
+<i18n lang="yaml">
+es:
+  title: "Te interesa trabajar conmigo?"
+  subtitle: "Dime como puedo ayudarte"
+  button: "Enviar"
+  textarea: "Mensaje"
+en:
+  title: "Do you want to work with me?"
+  subtitle: "Let me know how can I help"
+  button: "Submit"
+  textarea: "Message"
+</i18n>
 
 <style lang="postcss" scoped>
 section {

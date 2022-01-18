@@ -1,26 +1,63 @@
 <template>
   <div class="nav-content">
     <div class="language">
-      <svg-flag-spain :class="{ selected: !english }"></svg-flag-spain>
-      <base-switch v-model="english"></base-switch>
-      <svg-flag-usa :class="{ selected: english }"></svg-flag-usa>
+      <svg-flag-spain :class="{ selected: !english }" />
+      <base-switch v-model="english" />
+      <svg-flag-usa :class="{ selected: english }" />
     </div>
     <div class="buttons">
-      <base-button small>About</base-button>
-      <base-button primary small>Contact</base-button>
+      <base-button small @click="clickAbout">
+        {{ t("button.about") }}
+      </base-button>
+      <a href="#contact">
+        <base-button primary small @click="clickContact">
+          {{ t("button.contact") }}
+        </base-button>
+      </a>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineEmits } from "vue";
+import { useI18n } from "vue-i18n";
+
 import BaseButton from "./BaseButton.vue";
 import BaseSwitch from "./BaseSwitch.vue";
 import SvgFlagSpain from "./svg/SvgFlagSpain.vue";
 import SvgFlagUsa from "./svg/SvgFlagUsa.vue";
 
+const emit = defineEmits(["close-modal"]);
+
 const english = ref(false);
+
+const { t, locale } = useI18n({
+  inheritLocale: true,
+});
+locale.value = "es";
+
+const closeModal = () => emit("close-modal");
+
+/* button handle */
+const clickAbout = () => {
+  /* open about component */
+  closeModal();
+};
+const clickContact = () => {
+  closeModal();
+};
 </script>
+
+<i18n lang="yaml">
+es:
+  button:
+    about: "Acerca"
+    contact: "Contáctame"
+en:
+  button:
+    about: "About"
+    contact: "Contact"
+</i18n>
 
 <style lang="postcss">
 .nav-content {

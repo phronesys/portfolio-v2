@@ -6,18 +6,28 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
+const { locale } = useI18n({
+  inheritLocale: true,
+  useScope: "global",
+});
+
+const emit = defineEmits(['update:modelValue'])
 const props = defineProps({
   modelValue: Boolean
 })
-
-const emit = defineEmits(['update:modelValue'])
 
 const value = computed({
   get: () => props.modelValue,
   set: (value) => emit('update:modelValue', value),
 })
+
+/* sets global i18n state by watching switch value */
+watch(value, (value) => {
+  value ? (locale.value = "en") : (locale.value = "es");
+});
 </script>
 
 <style lang="postcss">

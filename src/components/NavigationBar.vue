@@ -9,7 +9,7 @@
     </div>
   </section>
   <navigation-modal :open="open" :width="width">
-    <navigation-content></navigation-content>
+    <navigation-content @close-modal="openSidebar = false"></navigation-content>
   </navigation-modal>
 </template>
 
