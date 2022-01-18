@@ -49,13 +49,21 @@
     "@intlify/runtime" "9.0.0"
     "@intlify/shared" "9.0.0"
 
-"@intlify/message-compiler@9.0.0", "@intlify/message-compiler@beta":
+"@intlify/message-compiler@9.0.0":
   "integrity" "sha512-3oiLj+8z6koRYJwknazjilBsrqnJEAJywr/t39MYVy2yPmwOI1+NDfdDwM9U3ioA2RvsQEUICqW8gmjq1YIElw=="
   "resolved" "https://registry.npmjs.org/@intlify/message-compiler/-/message-compiler-9.0.0.tgz"
   "version" "9.0.0"
   dependencies:
     "@intlify/message-resolver" "9.0.0"
     "@intlify/shared" "9.0.0"
+    "source-map" "0.6.1"
+
+"@intlify/message-compiler@beta":
+  "integrity" "sha512-qtDgHCMqrXNTekKXGzm0Dm6r3+/X7/jFXP+E07hx+PJbPMv7DzK1iU8h5LlAMQ1/jr2UIRBgXvR5wh35OKoGrA=="
+  "resolved" "https://registry.npmjs.org/@intlify/message-compiler/-/message-compiler-9.2.0-beta.26.tgz"
+  "version" "9.2.0-beta.26"
+  dependencies:
+    "@intlify/shared" "9.2.0-beta.26"
     "source-map" "0.6.1"
 
 "@intlify/message-resolver@9.0.0":
@@ -72,10 +80,15 @@
     "@intlify/message-resolver" "9.0.0"
     "@intlify/shared" "9.0.0"
 
-"@intlify/shared@9.0.0", "@intlify/shared@beta":
+"@intlify/shared@9.0.0":
   "integrity" "sha512-0r4v7dnY8g/Jfx2swUWy2GyfH/WvIpWvkU4OIupvxDTWiE8RhcpbOCVvqpVh/xGi0proHQ/r2Dhc0QSItUsfDQ=="
   "resolved" "https://registry.npmjs.org/@intlify/shared/-/shared-9.0.0.tgz"
   "version" "9.0.0"
+
+"@intlify/shared@9.2.0-beta.26", "@intlify/shared@beta":
+  "integrity" "sha512-MjUlkjNThqkqy8yXUcFKBiW/hIfqAn5cP3Vd0b4wdOHS8rPCEbvSbAnF08uiZDkVv8gTcsLyymX21GaU6oYyyQ=="
+  "resolved" "https://registry.npmjs.org/@intlify/shared/-/shared-9.2.0-beta.26.tgz"
+  "version" "9.2.0-beta.26"
 
 "@intlify/vite-plugin-vue-i18n@^3.2.1":
   "integrity" "sha512-h/nIShN/tljZZfTWAI2jyMwDI7UxSkOPMQbMAh2poC+wO1H9N/qaK6+GqyXG79g3PWtu6Igvfx/JH116cMD9fQ=="
@@ -146,7 +159,7 @@
     "@vue/compiler-core" "3.2.26"
     "@vue/shared" "3.2.26"
 
-"@vue/compiler-sfc@3.2.26":
+"@vue/compiler-sfc@>=3.0.0", "@vue/compiler-sfc@3.2.26":
   "integrity" "sha512-ePpnfktV90UcLdsDQUh2JdiTuhV0Skv2iYXxfNMOK/F3Q+2BO0AulcVcfoksOpTJGmhhfosWfMyEaEf0UaWpIw=="
   "resolved" "https://registry.npmjs.org/@vue/compiler-sfc/-/compiler-sfc-3.2.26.tgz"
   "version" "3.2.26"
@@ -1074,7 +1087,7 @@
     "@intlify/shared" "9.0.0"
     "@vue/devtools-api" "^6.0.0-beta.5"
 
-"vue@^2.6.0 || ^3.2.0", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.16", "vue@^3.2.25", "vue@3.2.26":
+"vue@^2.6.0 || ^3.2.0", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.16", "vue@^3.2.25", "vue@>=3.0.0", "vue@3.2.26":
   "integrity" "sha512-KD4lULmskL5cCsEkfhERVRIOEDrfEL9CwAsLYpzptOGjaGFNWo3BQ9g8MAb7RaIO71rmVOziZ/uEN/rHwcUIhg=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.26.tgz"
   "version" "3.2.26"
@@ -1084,6 +1097,11 @@
     "@vue/runtime-dom" "3.2.26"
     "@vue/server-renderer" "3.2.26"
     "@vue/shared" "3.2.26"
+
+"vue3-lazyload@^0.2.5-beta":
+  "integrity" "sha512-GVhJfL9Hcu+AvWsYmUwODivvt+gzpT0ztgAzZaUduoiTaGCv/qzhr0VwAQXfjGF3XFYFyOJsHlAi3/WE0P8XTQ=="
+  "resolved" "https://registry.npmjs.org/vue3-lazyload/-/vue3-lazyload-0.2.5-beta.tgz"
+  "version" "0.2.5-beta"
 
 "wrappy@1":
   "integrity" "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8="

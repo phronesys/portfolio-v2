@@ -10,7 +10,8 @@
     "@vueuse/core": "^7.4.1",
     "three": "^0.136.0",
     "vue": "^3.2.16",
-    "vue-i18n": "^9.0.0"
+    "vue-i18n": "^9.0.0",
+    "vue3-lazyload": "^0.2.5-beta"
   },
   "devDependencies": {
     "@intlify/vite-plugin-vue-i18n": "^3.2.1",

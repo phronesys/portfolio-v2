@@ -1,9 +1,9 @@
 <template>
   <section>
     <div class="head">
-      <h1>{{t("title")}}</h1>
+      <h1>{{ t("title") }}</h1>
       <div class="preview">
-        <img src="../../sad.gif" alt="" />
+        <img v-lazy="projects[selected].previewPath" @click="openDemo" />
       </div>
     </div>
     <ul>
@@ -43,20 +43,29 @@ const projects = ref([
     github: "https://github.com/phronesys/hou-movies",
     figma: "https://figma.com/",
     demo: "https://hou-movies.vercel.app/",
+    previewPath: "../../public/houmovies.gif",
   },
   {
     title: "Giftty  🎁🔍",
     github: "https://github.com/phronesys/tenor-angular",
     figma: "https://figma.com/",
     demo: "https://giftty.netlify.app/",
+    previewPath: "../../public/giftty.gif",
   },
   {
     title: "Pokedex  👾👾👾",
     github: "https://github.com/phronesys/pokedex-v2",
     figma: "https://figma.com/",
     demo: "https://pokedex-gen01.netlify.app/",
+    previewPath: "../../public/pokedex.gif",
   },
 ]);
+
+/* click on preview gif */
+const openDemo = () => {
+  const url = projects.value[selected.value].demo;
+  window.open(url, "_blank");
+};
 </script>
 
 <i18n lang="yaml">
@@ -84,10 +93,11 @@ section {
       @apply xl:text-5xl;
     }
     & > .preview {
-      @apply rounded-lg p-4 aspect-square min-w-[200px] w-[300px];
-      @apply bg-gray-900/20 shadow-inner shadow-pink-500/20;
+      @apply rounded-lg p-4 min-w-[200px] w-[300px];
+      @apply bg-gray-900/20 shadow-inner shadow-pink-500/20 transition-shadow duration-300;
+      @apply cursor-pointer hover:shadow-pink-500/50;
       & > img {
-        @apply rounded-lg h-full w-full;
+        @apply rounded-sm h-40;
       }
     }
   }
