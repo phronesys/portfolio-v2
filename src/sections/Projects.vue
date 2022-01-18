@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="head">
-      <h1>Preview</h1>
+      <h1>{{t("title")}}</h1>
       <div class="preview">
         <img src="../../sad.gif" alt="" />
       </div>
@@ -15,11 +15,11 @@
       >
         <div class="text">
           <h1>{{ project.title }}</h1>
-          <p>{{ project.description }}</p>
+          <p>{{ t(`${index + 1}`) }}</p>
         </div>
         <div class="links">
           <a :href="project.github" target="_blank">GitHub</a>
-          <a :href="project.figma" target="_blank">Figma</a>
+          <!-- <a :href="project.figma" target="_blank">Figma</a> -->
           <a :href="project.demo" target="_blank">Demo</a>
         </div>
       </li>
@@ -29,35 +29,48 @@
 
 <script setup>
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+const { t, locale } = useI18n({
+  inheritLocale: true,
+});
+
+locale.value = "es";
 
 const selected = ref(0);
 const projects = ref([
   {
-    title: "Title of awesome project",
-    description: `This is a very short 
-    description of what this project is all about`,
-    github: "https://github.com/",
+    title: "Hou Movies  🍿🎥",
+    github: "https://github.com/phronesys/hou-movies",
     figma: "https://figma.com/",
-    demo: "http://example.com/",
+    demo: "https://hou-movies.vercel.app/",
   },
   {
-    title: "Title of awesome project",
-    description: `This is a very short 
-    description of what this project is all about`,
-    github: "https://github.com/",
+    title: "Giftty  🎁🔍",
+    github: "https://github.com/phronesys/tenor-angular",
     figma: "https://figma.com/",
-    demo: "http://example.com/",
+    demo: "https://giftty.netlify.app/",
   },
   {
-    title: "Title of awesome project",
-    description: `This is a very short 
-    description of what this project is all about`,
-    github: "https://github.com/",
+    title: "Pokedex  👾👾👾",
+    github: "https://github.com/phronesys/pokedex-v2",
     figma: "https://figma.com/",
-    demo: "http://example.com/",
+    demo: "https://pokedex-gen01.netlify.app/",
   },
 ]);
 </script>
+
+<i18n lang="yaml">
+es:
+  title: "Previa"
+  1: "Lista infinita al hacer scroll con las peliculas de TheMovieDB. Hecho con React y Tailwind"
+  2: "Busca gif's disponibles en la API de Tenor, con autocompletado. Hecho con Angular y Sass"
+  3: "Busca tus pokemones favoritos traidos desde la PokeAPI. Hecho con Vue y Tailwind"
+en:
+  title: "Preview"
+  1: "Infinite scroll with TheMovieDB movies. Made with React + Tailwind"
+  2: "Search gif's with suggestions from Tenor API. Made with Angular + Sass"
+  3: "Search your favorites pokemons from the PokeAPI and see their stats. Made with Vue + Tailwind"
+</i18n>
 
 <style lang="postcss" scoped>
 section {
