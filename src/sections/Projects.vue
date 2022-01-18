@@ -93,11 +93,12 @@ section {
       @apply xl:text-5xl;
     }
     & > .preview {
-      @apply rounded-lg p-4 min-w-[200px] w-[300px];
+      @apply rounded-lg p-4 min-w-[200px];
       @apply bg-gray-900/20 shadow-inner shadow-pink-500/20 transition-shadow duration-300;
       @apply cursor-pointer hover:shadow-pink-500/50;
       & > img {
-        @apply rounded-sm h-40;
+        @apply rounded-sm aspect-video;
+        @apply w-80 lg:w-[450px];
       }
     }
   }
