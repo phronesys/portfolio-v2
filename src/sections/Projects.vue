@@ -3,7 +3,13 @@
     <div class="head">
       <h1>{{ t("title") }}</h1>
       <div class="preview">
-        <img v-lazy="projects[selected].previewPath" @click="openDemo" />
+        <img
+          v-lazy="{
+            src: lazyOptions.src,
+            lifecycle: lazyOptions.lifecycle,
+          }"
+          @click="openDemo"
+        />
       </div>
     </div>
     <ul>
@@ -28,14 +34,16 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, reactive, computed } from "vue";
 import { useI18n } from "vue-i18n";
+/* i18n */
 const { t, locale } = useI18n({
   inheritLocale: true,
 });
 
 locale.value = "es";
 
+/* project list */
 const selected = ref(0);
 const projects = ref([
   {
@@ -43,25 +51,60 @@ const projects = ref([
     github: "https://github.com/phronesys/hou-movies",
     figma: "https://figma.com/",
     demo: "https://hou-movies.vercel.app/",
-    previewPath: "../../houmovies.gif",
+    src: "../../houmovies.png",
+    id: "houmovies",
   },
   {
     title: "Giftty  🎁🔍",
     github: "https://github.com/phronesys/tenor-angular",
     figma: "https://figma.com/",
     demo: "https://giftty.netlify.app/",
-    previewPath: "../../giftty.gif",
+    src: "../../giftty.png",
+    id: "giftty",
   },
   {
     title: "Pokedex  👾👾👾",
     github: "https://github.com/phronesys/pokedex-v2",
     figma: "https://figma.com/",
     demo: "https://pokedex-gen01.netlify.app/",
-    previewPath: "../../pokedex.gif",
+    src: "../../pokedex.png",
+    id: "pokedex",
   },
 ]);
 
-/* click on preview gif */
+/* 
+gets current selected src 
+sets src updated to gif 
+*/
+const src = computed({
+  get: () => projects.value[selected.value].src,
+  set: (value) => {
+    const newSrc = `../../${value}.gif`;
+    projects.value[selected.value].src = newSrc;
+  },
+});
+
+/* current selected id */
+const id = computed(() => projects.value[selected.value].id);
+
+/* lazy loading */
+const lazyOptions = reactive({
+  src: src,
+  lifecycle: {
+    loading: (el) => {
+      /* in loading hook image is already set */
+    },
+    error: (el) => {
+      console.log("image error", el);
+    },
+    loaded: (el) => {
+      /* once is loaded we set the gif */
+      src.value = id.value;
+    },
+  },
+});
+
+/* open demo on gif click */
 const openDemo = () => {
   const url = projects.value[selected.value].demo;
   window.open(url, "_blank");
