@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 
 import BaseButton from "./BaseButton.vue";
