@@ -8,14 +8,17 @@
         </a>
       </li>
     </ul>
-    <form action="">
+    <form name="contact" method="POST" data-netlify="true" v-if="notSubmitted">
       <h4>{{ t("subtitle") }}</h4>
-      <base-input />
-      <base-textarea :placeholder="t('textarea')"></base-textarea>
-      <base-button primary @click.prevent="submitEmail">
+      <base-input name="email" />
+      <base-textarea name="message" :placeholder="t('textarea')" />
+      <base-button type="submit" primary @click.prevent="submitEmail">
         {{ t("button") }}
       </base-button>
     </form>
+    <div class="success" v-else>
+      <h4>{{ t("success") }}</h4>
+    </div>
   </section>
 </template>
 
@@ -35,7 +38,7 @@ locale.value = "es";
 
 const contactTitle = (contact) => contact.title.toLowerCase();
 const submitEmail = () => {
-  console.log("email submitted!!");
+  notSubmitted.value = false;
 };
 
 const contactList = ref([
@@ -47,6 +50,7 @@ const contactList = ref([
     link: "https://www.upwork.com/freelancers/~0124080cb096b4e1b3",
   },
 ]);
+const notSubmitted = ref(true);
 </script>
 
 <i18n lang="yaml">
@@ -55,11 +59,13 @@ es:
   subtitle: "Dime como puedo ayudarte"
   button: "Enviar"
   textarea: "Mensaje"
+  success: "Muchas gracias, te responderé pronto!!"
 en:
   title: "Do you want to work with me?"
   subtitle: "Let me know how can I help"
   button: "Submit"
   textarea: "Message"
+  success: "Thank you, I'll reach you out soon!!"
 </i18n>
 
 <style lang="postcss" scoped>
@@ -97,5 +103,9 @@ section > form {
   & > button {
     @apply ml-auto mr-4;
   }
+}
+
+section > .success {
+  @apply text-white text-xl py-5;
 }
 </style>
