@@ -8,7 +8,14 @@
         </a>
       </li>
     </ul>
-    <form name="contact" method="POST" netlify v-if="notSubmitted">
+    <form
+      v-if="notSubmitted"
+      name="contact"
+      method="post"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="contact-me">
       <h4>{{ t("subtitle") }}</h4>
       <base-input name="email" />
       <base-textarea name="message" :placeholder="t('textarea')" />
