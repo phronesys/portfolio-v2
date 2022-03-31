@@ -8,7 +8,7 @@
         </a>
       </li>
     </ul>
-    <form name="contact" method="POST" data-netlify="true" v-if="notSubmitted">
+    <form name="contact" method="POST" netlify v-if="notSubmitted">
       <h4>{{ t("subtitle") }}</h4>
       <base-input name="email" />
       <base-textarea name="message" :placeholder="t('textarea')" />
