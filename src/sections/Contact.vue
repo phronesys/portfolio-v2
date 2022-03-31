@@ -9,7 +9,6 @@
           </a>
         </li>
       </ul>
-      <input type="hidden" name="form-name" value="" />
       <base-input name="email" />
       <base-textarea name="message" :placeholder="t('textarea')" />
       <base-button type="submit" primary @click.prevent="submitEmail">
