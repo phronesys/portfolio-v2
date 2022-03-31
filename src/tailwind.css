@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* netlify forms made me do it >.< */
+.contact-form {
+  @apply flex flex-col mx-auto gap-8 w-full z-20 relative;
+}
+.contact-form h4 {
+  @apply text-white;
+}
+.contact-form input,
+.contact-form textarea {
+  @apply mx-auto w-full;
+}
+
+.contact-form button {
+  @apply ml-auto mr-4;
+}
+
+/* global definitions */
+input,
+textarea {
+  @apply p-4 w-11/12 rounded-md border focus:outline-none text-black valid:border-purple-500 invalid:border-red-500;
+}
+
+button {
+  @apply bg-black text-white max-w-max border-2 border-transparent;
+  @apply hover:border-white transition-colors duration-300 ease-linear;
+  @apply text-xs px-3 py-2 rounded-md;
+  @apply sm:text-sm;
+  @apply md:text-base sm:px-4 sm:py-3 md:rounded-lg;
+  @apply xl:text-xl xl:px-5 xl:py-4;
+}
+button.primary {
+  @apply bg-pink-600;
+}
+button.secondary {
+  @apply bg-purple-600;
+}
+button.tertiary {
+  @apply bg-green-500;
+}
+button.light {
+  @apply bg-white text-black;
+}
+button.small {
+  @apply !text-sm !px-3 !py-2;
+}

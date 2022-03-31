@@ -1,30 +1,27 @@
 <template>
-  <Teleport to="form">
-    <section ref="contact">
-      <h1>{{ t("title") }}</h1>
-      <ul class="contact-list">
-        <li v-for="contact in contactList" :key="contact.title">
-          <a :href="contact.link" target="_blank" :title="contact.title">
-            <icon-contact :name="contactTitle(contact)"></icon-contact>
-          </a>
-        </li>
-      </ul>
+  <section ref="contact">
+    <h1>{{ t("title") }}</h1>
+    <ul class="contact-list">
+      <li v-for="contact in contactList" :key="contact.title">
+        <a :href="contact.link" target="_blank" :title="contact.title">
+          <icon-contact :name="contactTitle(contact)"></icon-contact>
+        </a>
+      </li>
+    </ul>
+    <!--     <Teleport to="form">
       <base-input name="email" />
       <base-textarea name="message" :placeholder="t('textarea')" />
       <base-button type="submit" primary @click.prevent="submitEmail">
         {{ t("button") }}
       </base-button>
-    </section>
-  </Teleport>
+    </Teleport> -->
+  </section>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import IconContact from "../components/IconContact.vue";
-import BaseInput from "../components/BaseInput.vue";
-import BaseTextarea from "../components/BaseTextarea.vue";
-import BaseButton from "../components/BaseButton.vue";
 
 const { t, locale } = useI18n({
   inheritLocale: true,
@@ -87,22 +84,6 @@ section > .contact-list {
         @apply w-8 h-8;
       }
     }
-  }
-}
-</style>
-
-<style lang="postcss">
-form {
-  @apply flex flex-col mx-auto gap-8 w-full z-20 relative;
-  & h4 {
-    @apply text-white;
-  }
-  & input,
-  & textarea {
-    @apply mx-auto w-full;
-  }
-  & button {
-    @apply ml-auto mr-4;
   }
 }
 </style>

@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import useBreakpoints from "../modules/useBreakpoints";
 export default {
   name: "BaseButton",
   props: {
@@ -24,11 +23,7 @@ export default {
     small: {
       type: Boolean,
       default: false,
-    }
-  },
-  setup() {
-    const { type } = useBreakpoints();
-    return { type };
+    },
   },
 };
 </script>
