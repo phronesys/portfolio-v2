@@ -26,7 +26,7 @@ onMounted(() => {
 </script>
 
 <style lang="postcss">
-@import url("https://fonts.googleapis.com/css2?family=Sarala:wght@400;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Sarala:wght@400;700&display=swap"); */
 #app {
   font-family: "Sarala", Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

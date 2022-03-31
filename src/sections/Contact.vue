@@ -1,36 +1,26 @@
 <template>
-  <section>
-    <h1>{{ t("title") }}</h1>
-    <ul class="contact-list">
-      <li v-for="contact in contactList" :key="contact.title">
-        <a :href="contact.link" target="_blank" :title="contact.title">
-          <icon-contact :name="contactTitle(contact)"></icon-contact>
-        </a>
-      </li>
-    </ul>
-    <form
-      v-if="notSubmitted"
-      name="contact"
-      method="post"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
-    >
-      <input type="hidden" name="form-name" value="contact-me">
-      <h4>{{ t("subtitle") }}</h4>
+  <Teleport to="form">
+    <section ref="contact">
+      <h1>{{ t("title") }}</h1>
+      <ul class="contact-list">
+        <li v-for="contact in contactList" :key="contact.title">
+          <a :href="contact.link" target="_blank" :title="contact.title">
+            <icon-contact :name="contactTitle(contact)"></icon-contact>
+          </a>
+        </li>
+      </ul>
+      <input type="hidden" name="form-name" value="" />
       <base-input name="email" />
       <base-textarea name="message" :placeholder="t('textarea')" />
       <base-button type="submit" primary @click.prevent="submitEmail">
         {{ t("button") }}
       </base-button>
-    </form>
-    <div class="success" v-else>
-      <h4>{{ t("success") }}</h4>
-    </div>
-  </section>
+    </section>
+  </Teleport>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import IconContact from "../components/IconContact.vue";
 import BaseInput from "../components/BaseInput.vue";
@@ -58,6 +48,8 @@ const contactList = ref([
   },
 ]);
 const notSubmitted = ref(true);
+
+onMounted(() => {});
 </script>
 
 <i18n lang="yaml">
@@ -98,21 +90,20 @@ section > .contact-list {
     }
   }
 }
-section > form {
-  @apply flex flex-col mx-auto gap-8 w-full;
-  & > h4 {
+</style>
+
+<style lang="postcss">
+form {
+  @apply flex flex-col mx-auto gap-8 w-full z-20 relative;
+  & h4 {
     @apply text-white;
   }
-  & > input,
-  & > textarea {
+  & input,
+  & textarea {
     @apply mx-auto w-full;
   }
-  & > button {
+  & button {
     @apply ml-auto mr-4;
   }
-}
-
-section > .success {
-  @apply text-white text-xl py-5;
 }
 </style>
