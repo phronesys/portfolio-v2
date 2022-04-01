@@ -18,7 +18,12 @@
       <base-input v-model="email" :placeholder="t('email')" type="email" />
       <base-textarea v-model="message" :placeholder="t('textarea')" />
       <div class="flex flex-row justify-between items-center">
-        <div id="captcha"></div>
+        <div
+          class="g-recaptcha"
+          data-sitekey="6Ldn7TQfAAAAAGqnKIDP6tiQ9ALHTPjaXfBlUZ4_"
+          data-theme="dark"
+          data-callback="verifyCallback"
+        ></div>
         <base-button type="submit" primary @click.prevent="submitEmail">
           {{ t("button") }}
         </base-button>
@@ -104,7 +109,6 @@ const invalidForm = () =>
 const validateCaptcha = (responseToken) => {
   fetch("https://www.google.com/recaptcha/api/siteverify", {
     method: "POST",
-
     body: JSON.stringify({
       secret: "6Ldn7TQfAAAAAGqnKIDP6tiQ9ALHTPjaXfBlUZ4_",
     }),
@@ -135,13 +139,24 @@ const submitEmail = () => {
   formSubmitted.value = true;
 };
 
-onMounted(() => {
+const verifyCallback = (response) => {
+  console.log(response);
+  console.log(grecaptcha.getResponse());
+};
+
+const injectReCaptcha = () => {
+  /* script api */
   const script = document.createElement("script");
-  script.src =
-    "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit";
+  script.src = "https://www.google.com/recaptcha/api.js";
   script.async = true;
   script.defer = true;
   document.body.appendChild(script);
+  /* verifyCallback */
+  window.verifyCallback = verifyCallback;
+};
+
+onMounted(() => {
+  injectReCaptcha();
 });
 </script>
 
