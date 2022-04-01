@@ -109,10 +109,8 @@ const invalidForm = () =>
 const validateCaptcha = (responseToken) => {
   fetch("https://www.google.com/recaptcha/api/siteverify", {
     method: "POST",
-    body: JSON.stringify({
-      secret: "6Ldn7TQfAAAAAGqnKIDP6tiQ9ALHTPjaXfBlUZ4_",
-      response: responseToken
-    }),
+    secret: "6Ldn7TQfAAAAAGqnKIDP6tiQ9ALHTPjaXfBlUZ4_",
+    response: responseToken,
   })
     .then((response) => {
       console.log(response);
