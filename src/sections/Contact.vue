@@ -8,13 +8,18 @@
         </a>
       </li>
     </ul>
-    <!--     <Teleport to="form">
-      <base-input name="email" />
-      <base-textarea name="message" :placeholder="t('textarea')" />
-      <base-button type="submit" primary @click.prevent="submitEmail">
+    <form class="contact-form" name="contact" method="post" data-netlify="true">
+      <input type="hidden" name="form-name" value="contact" />
+      <base-input v-model="email" name="email" />
+      <base-textarea
+        v-model="message"
+        name="message"
+        :placeholder="t('textarea')"
+      />
+      <base-button type="submit" primary @click="submitEmail">
         {{ t("button") }}
       </base-button>
-    </Teleport> -->
+    </form>
   </section>
 </template>
 
@@ -22,18 +27,14 @@
 import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import IconContact from "../components/IconContact.vue";
+import BaseInput from "../components/BaseInput.vue";
+import BaseButton from "../components/BaseButton.vue";
+import BaseTextarea from "../components/BaseTextarea.vue";
 
 const { t, locale } = useI18n({
   inheritLocale: true,
 });
-
-locale.value = "es";
-
-const contactTitle = (contact) => contact.title.toLowerCase();
-const submitEmail = () => {
-  notSubmitted.value = false;
-};
-
+const notSubmitted = ref(true);
 const contactList = ref([
   { title: "Devto", link: "https://dev.to/phronesys" },
   { title: "Github", link: "https://github.com/phronesys" },
@@ -43,9 +44,40 @@ const contactList = ref([
     link: "https://www.upwork.com/freelancers/~0124080cb096b4e1b3",
   },
 ]);
-const notSubmitted = ref(true);
+const message = ref("");
+const email = ref("");
 
-onMounted(() => {});
+locale.value = "es";
+
+const contactTitle = (contact) => contact.title.toLowerCase();
+const submitEmail = (e) => {
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: encodeURI({ "form-name": "contact", email, message }),
+  })
+    .then(() => alert("Success!"))
+    .catch((error) => alert(error));
+
+  e.preventDefault();
+  notSubmitted.value = false;
+};
+
+onMounted(() => {
+  const handleFormSubmit = (e) => {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encodeURI({ "form-name": "contact", email, message }),
+    })
+      .then(() => alert("Success!"))
+      .catch((error) => alert(error));
+
+    e.preventDefault();
+  };
+
+  // document.querySelector("form").addEventListener("submit", handleFormSubmit);
+});
 </script>
 
 <i18n lang="yaml">

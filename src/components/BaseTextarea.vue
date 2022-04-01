@@ -1,5 +1,6 @@
 <template>
   <textarea
+    v-model="value"
     class="textarea"
     placeholder="Message"
     name="message"
@@ -7,6 +8,20 @@
     rows="10"
   ></textarea>
 </template>
+
+<script setup>
+import { computed } from "vue";
+
+const emit = defineEmits(["update:modelValue"]);
+const props = defineProps({
+  modelValue: String,
+});
+
+const value = computed({
+  get: () => props.modelValue,
+  set: (value) => emit("update:modelValue", value),
+});
+</script>
 
 <style lang="postcss">
 .textarea {

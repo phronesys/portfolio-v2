@@ -22,11 +22,6 @@ import { useThree } from "./modules/useThreeBackground";
 
 onMounted(() => {
   useThree("#container");
-
-  document.querySelector("form").onsubmit = (e) => {
-    e.preventDefault();
-    /* handle submission */
-  };
 });
 </script>
 
