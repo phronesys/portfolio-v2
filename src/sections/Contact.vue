@@ -13,17 +13,13 @@
       class="contact-form"
       method="post"
       autocomplete="on"
+      action="javascript:grecaptcha.reset(formCaptcha);"
     >
       <base-input v-model="name" :placeholder="t('name')" />
       <base-input v-model="email" :placeholder="t('email')" type="email" />
       <base-textarea v-model="message" :placeholder="t('textarea')" />
       <div class="flex flex-row justify-between items-center">
-        <div
-          class="g-recaptcha"
-          data-sitekey="6Ldn7TQfAAAAAGqnKIDP6tiQ9ALHTPjaXfBlUZ4_"
-          data-theme="dark"
-          data-callback="verifyCallback"
-        ></div>
+        <div id="captcha"></div>
         <base-button type="submit" primary @click.prevent="submitEmail">
           {{ t("button") }}
         </base-button>
@@ -70,6 +66,7 @@ const contactList = ref([
 /* form */
 const formSubmitted = ref(false);
 const validCaptcha = ref(false);
+const formCaptcha = ref(null);
 const name = ref("");
 const message = ref("");
 const email = ref("");
@@ -142,15 +139,26 @@ const verifyCallback = (response) => {
   validateCaptcha(response);
 };
 
+const onloadCallback = () => {
+  window.formCaptcha = grecaptcha.render("captcha", {
+    theme: "dark",
+    sitekey: env.VITE_CAPTCHA,
+    callback: verifyCallback
+  });
+};
+
 const injectReCaptcha = () => {
   /* script api */
   const script = document.createElement("script");
-  script.src = "https://www.google.com/recaptcha/api.js";
+  script.src =
+    "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=onload";
   script.async = true;
   script.defer = true;
   document.body.appendChild(script);
-  /* verifyCallback */
+  /* window callbacks */
   window.verifyCallback = verifyCallback;
+  window.onloadCallback = onloadCallback;
+  window.formCaptcha = formCaptcha;
 };
 
 onMounted(() => {
