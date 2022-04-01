@@ -119,7 +119,6 @@ const submitEmail = () => {
 };
 
 const verifyCallback = (response) => {
-  validateCaptcha(response);
 };
 
 const onloadCallback = () => {
