@@ -18,7 +18,10 @@
       <base-input v-model="email" :placeholder="t('email')" type="email" />
       <base-textarea v-model="message" :placeholder="t('textarea')" />
       <div class="flex flex-row justify-between items-center">
-        <div class="g-recaptcha" :data-sitekey="captchaKey"></div>
+        <div
+          class="g-recaptcha"
+          data-sitekey="6Ldn7TQfAAAAAGqnKIDP6tiQ9ALHTPjaXfBlUZ4_"
+        ></div>
         <base-button type="submit" primary @click.prevent="submitEmail">
           {{ t("button") }}
         </base-button>
@@ -63,7 +66,6 @@ const contactList = ref([
 ]);
 
 /* form */
-const captchaKey = env.VITE_CAPTCHA;
 const notSubmitted = ref(true);
 const name = ref("");
 const message = ref("");
