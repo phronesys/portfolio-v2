@@ -103,22 +103,6 @@ const invalidForm = () =>
   name.value.length > 50 ||
   message.value.length > 300;
 
-const validateCaptcha = (responseToken) => {
-  fetch("https://www.google.com/recaptcha/api/siteverify", {
-    method: "POST",
-    secret: "6Ldn7TQfAAAAAGqnKIDP6tiQ9ALHTPjaXfBlUZ4_",
-    response: responseToken,
-  })
-    .then((response) => {
-      console.log(response);
-      if (response.success) {
-        alert("works!");
-        validCaptcha.value = response.success;
-      }
-    })
-    .catch((err) => console.error(err));
-};
-
 const submitEmail = () => {
   /* verify length */
   if (invalidForm()) return alert(":-|");
@@ -128,8 +112,7 @@ const submitEmail = () => {
   if (!regex.test(email.value)) return alert("invalid email!!");
 
   /* verify captcha */
-  validateCaptcha(grecaptcha.getResponse());
-  if (!validCaptcha.value) return alert("captcha invalid");
+  if (grecaptcha.getResponse().length === 0) return alert("captcha invalid");
 
   airtablePost();
   formSubmitted.value = true;
@@ -143,7 +126,7 @@ const onloadCallback = () => {
   window.formCaptcha = grecaptcha.render("captcha", {
     theme: "dark",
     sitekey: env.VITE_CAPTCHA,
-    callback: verifyCallback
+    callback: verifyCallback,
   });
 };
 
