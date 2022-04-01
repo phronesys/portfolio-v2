@@ -2,8 +2,9 @@
   <input
     v-model="value"
     class="input"
-    type="email"
-    placeholder="john@doe.com"
+    type="text"
+    placeholder="Write something"
+    maxlength="100"
   />
 </template>
 

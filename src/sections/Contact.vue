@@ -8,33 +8,50 @@
         </a>
       </li>
     </ul>
-    <form class="contact-form" name="contact" method="post" data-netlify="true">
-      <input type="hidden" name="form-name" value="contact" />
-      <base-input v-model="email" name="email" />
-      <base-textarea
-        v-model="message"
-        name="message"
-        :placeholder="t('textarea')"
-      />
-      <base-button type="submit" primary @click="submitEmail">
-        {{ t("button") }}
-      </base-button>
+    <form
+      v-if="notSubmitted"
+      class="contact-form"
+      method="post"
+      autocomplete="on"
+    >
+      <base-input v-model="name" :placeholder="t('name')" />
+      <base-input v-model="email" :placeholder="t('email')" type="email" />
+      <base-textarea v-model="message" :placeholder="t('textarea')" />
+      <div class="flex flex-row justify-between items-center">
+        <div class="g-recaptcha" :data-sitekey="captchaKey"></div>
+        <base-button type="submit" primary @click.prevent="submitEmail">
+          {{ t("button") }}
+        </base-button>
+      </div>
     </form>
+    <div v-else>
+      <h1 class="text-xl text-white">{{ t("success") }}</h1>
+    </div>
   </section>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+import Airtable from "airtable";
+
 import IconContact from "../components/IconContact.vue";
 import BaseInput from "../components/BaseInput.vue";
 import BaseButton from "../components/BaseButton.vue";
 import BaseTextarea from "../components/BaseTextarea.vue";
 
+const env = import.meta.env;
+/* airtable config */
+const baseKey = env.VITE_AIRTABLE;
+const airtableBase = new Airtable({ apiKey: env.VITE_API_KEY }).base(baseKey);
+
+/* language */
 const { t, locale } = useI18n({
   inheritLocale: true,
 });
-const notSubmitted = ref(true);
+locale.value = "es";
+
+/* links */
 const contactList = ref([
   { title: "Devto", link: "https://dev.to/phronesys" },
   { title: "Github", link: "https://github.com/phronesys" },
@@ -44,44 +61,54 @@ const contactList = ref([
     link: "https://www.upwork.com/freelancers/~0124080cb096b4e1b3",
   },
 ]);
+
+/* form */
+const captchaKey = env.VITE_CAPTCHA;
+const notSubmitted = ref(true);
+const name = ref("");
 const message = ref("");
 const email = ref("");
 
-locale.value = "es";
-
 const contactTitle = (contact) => contact.title.toLowerCase();
-const submitEmail = (e) => {
-  fetch("/", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: encodeURI({
-      "form-name": "contact",
-      email: email.value,
-      message: message.value,
-    }),
-  })
-    .then(() => alert("Success!"))
-    .catch((error) => alert(error));
-
-  e.preventDefault();
-  notSubmitted.value = false;
+const airtablePost = () => {
+  airtableBase("Messages").create(
+    [
+      {
+        fields: {
+          Name: name.value,
+          Email: email.value,
+          Message: message.value,
+        },
+      },
+    ],
+    (err, records) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      records.forEach((record) => {
+        console.log(record.getId());
+      });
+    }
+  );
 };
 
-onMounted(() => {
-  const handleFormSubmit = (e) => {
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encodeURI({ "form-name": "contact", email, message }),
-    })
-      .then(() => alert("Success!"))
-      .catch((error) => alert(error));
+const invalidForm = () =>
+  email.value.length === 0 ||
+  name.value.length === 0 ||
+  message.value.length === 0 ||
+  email.value.length > 50 ||
+  name.value.length > 50 ||
+  message.value.length > 300;
 
-    e.preventDefault();
-  };
+const submitEmail = () => {
+  if (invalidForm()) return alert(":-|");
+  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  if (!regex.test(email.value)) return alert("invalid email!!");
 
-  // document.querySelector("form").addEventListener("submit", handleFormSubmit);
-});
+  airtablePost();
+  notSubmitted.value = false;
+};
 </script>
 
 <i18n lang="yaml">
@@ -89,12 +116,16 @@ es:
   title: "Te interesa trabajar conmigo?"
   subtitle: "Dime como puedo ayudarte"
   button: "Enviar"
+  name: "Nombre"
+  email: "Email"
   textarea: "Mensaje"
   success: "Muchas gracias, te responderé pronto!!"
 en:
   title: "Do you want to work with me?"
   subtitle: "Let me know how can I help"
   button: "Submit"
+  name: "Name"
+  email: "Email"
   textarea: "Message"
   success: "Thank you, I'll reach you out soon!!"
 </i18n>

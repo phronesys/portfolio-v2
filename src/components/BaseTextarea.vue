@@ -4,6 +4,7 @@
     class="textarea"
     placeholder="Message"
     name="message"
+    maxlength="300"
     cols="30"
     rows="10"
   ></textarea>
