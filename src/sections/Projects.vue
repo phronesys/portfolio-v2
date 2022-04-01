@@ -113,12 +113,12 @@ const openDemo = () => {
 
 <i18n lang="yaml">
 es:
-  title: "Previa"
+  title: "Mis Proyectos"
   1: "Lista infinita al hacer scroll con las peliculas de TheMovieDB. Hecho con React y Tailwind"
   2: "Busca gif's disponibles en la API de Tenor, con autocompletado. Hecho con Angular y Sass"
   3: "Busca tus pokemones favoritos traidos desde la PokeAPI. Hecho con Vue y Tailwind"
 en:
-  title: "Preview"
+  title: "My Projects"
   1: "Infinite scroll with TheMovieDB movies. Made with React + Tailwind"
   2: "Search gif's with suggestions from Tenor API. Made with Angular + Sass"
   3: "Search your favorites pokemons from the PokeAPI and see their stats. Made with Vue + Tailwind"
