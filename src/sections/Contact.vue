@@ -9,7 +9,7 @@
       </li>
     </ul>
     <form
-      v-if="notSubmitted"
+      v-if="!formSubmitted"
       class="contact-form"
       method="post"
       autocomplete="on"
@@ -66,7 +66,8 @@ const contactList = ref([
 ]);
 
 /* form */
-const notSubmitted = ref(true);
+const formSubmitted = ref(false);
+const validCaptcha = ref(false);
 const name = ref("");
 const message = ref("");
 const email = ref("");
@@ -103,13 +104,37 @@ const invalidForm = () =>
   name.value.length > 50 ||
   message.value.length > 300;
 
+const validateCaptcha = (responseToken) => {
+  fetch("https://www.google.com/recaptcha/api/siteverify", {
+    method: "POST",
+    body: JSON.stringify({
+      secret: "6Ldn7TQfAAAAAGqnKIDP6tiQ9ALHTPjaXfBlUZ4_",
+    }),
+  })
+    .then((response) => {
+      console.log(response);
+      if (response.success) {
+        alert('works!');
+        validCaptcha.value = response.success;
+      }
+    })
+    .catch((err) => console.error(err));
+};
+
 const submitEmail = () => {
+  /* verify length */
   if (invalidForm()) return alert(":-|");
+
+  /* verify email */
   const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   if (!regex.test(email.value)) return alert("invalid email!!");
 
+  /* verify captcha */
+  validateCaptcha();
+  if (!validCaptcha.value) return alert('captcha invalid');
+
   airtablePost();
-  notSubmitted.value = false;
+  formSubmitted.value = true;
 };
 </script>
 
