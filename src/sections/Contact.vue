@@ -54,7 +54,11 @@ const submitEmail = (e) => {
   fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: encodeURI({ "form-name": "contact", email, message }),
+    body: encodeURI({
+      "form-name": "contact",
+      email: email.value,
+      message: message.value,
+    }),
   })
     .then(() => alert("Success!"))
     .catch((error) => alert(error));
