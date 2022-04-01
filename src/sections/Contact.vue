@@ -111,6 +111,7 @@ const validateCaptcha = (responseToken) => {
     method: "POST",
     body: JSON.stringify({
       secret: "6Ldn7TQfAAAAAGqnKIDP6tiQ9ALHTPjaXfBlUZ4_",
+      response: responseToken
     }),
   })
     .then((response) => {
@@ -132,7 +133,7 @@ const submitEmail = () => {
   if (!regex.test(email.value)) return alert("invalid email!!");
 
   /* verify captcha */
-  validateCaptcha();
+  validateCaptcha(grecaptcha.getResponse());
   if (!validCaptcha.value) return alert("captcha invalid");
 
   airtablePost();
@@ -140,8 +141,7 @@ const submitEmail = () => {
 };
 
 const verifyCallback = (response) => {
-  console.log(response);
-  console.log(grecaptcha.getResponse());
+  validateCaptcha(response);
 };
 
 const injectReCaptcha = () => {
