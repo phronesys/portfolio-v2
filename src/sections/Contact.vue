@@ -18,10 +18,7 @@
       <base-input v-model="email" :placeholder="t('email')" type="email" />
       <base-textarea v-model="message" :placeholder="t('textarea')" />
       <div class="flex flex-row justify-between items-center">
-        <div
-          class="g-recaptcha"
-          data-sitekey="6Ldn7TQfAAAAAGqnKIDP6tiQ9ALHTPjaXfBlUZ4_"
-        ></div>
+        <div id="captcha"></div>
         <base-button type="submit" primary @click.prevent="submitEmail">
           {{ t("button") }}
         </base-button>
@@ -34,7 +31,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import Airtable from "airtable";
 
@@ -107,6 +104,7 @@ const invalidForm = () =>
 const validateCaptcha = (responseToken) => {
   fetch("https://www.google.com/recaptcha/api/siteverify", {
     method: "POST",
+
     body: JSON.stringify({
       secret: "6Ldn7TQfAAAAAGqnKIDP6tiQ9ALHTPjaXfBlUZ4_",
     }),
@@ -114,7 +112,7 @@ const validateCaptcha = (responseToken) => {
     .then((response) => {
       console.log(response);
       if (response.success) {
-        alert('works!');
+        alert("works!");
         validCaptcha.value = response.success;
       }
     })
@@ -131,11 +129,20 @@ const submitEmail = () => {
 
   /* verify captcha */
   validateCaptcha();
-  if (!validCaptcha.value) return alert('captcha invalid');
+  if (!validCaptcha.value) return alert("captcha invalid");
 
   airtablePost();
   formSubmitted.value = true;
 };
+
+onMounted(() => {
+  const script = document.createElement("script");
+  script.src =
+    "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit";
+  script.async = true;
+  script.defer = true;
+  document.body.appendChild(script);
+});
 </script>
 
 <i18n lang="yaml">
