@@ -18,7 +18,7 @@
       <base-input v-model="name" :placeholder="t('name')" />
       <base-input v-model="email" :placeholder="t('email')" type="email" />
       <base-textarea v-model="message" :placeholder="t('textarea')" />
-      <div class="flex flex-row justify-between items-center">
+      <div class="submit">
         <div id="captcha"></div>
         <base-button type="submit" primary @click.prevent="submitEmail">
           {{ t("button") }}
@@ -118,8 +118,7 @@ const submitEmail = () => {
   formSubmitted.value = true;
 };
 
-const verifyCallback = (response) => {
-};
+const verifyCallback = (response) => {};
 
 const onloadCallback = () => {
   window.formCaptcha = grecaptcha.render("captcha", {
@@ -187,6 +186,23 @@ section > .contact-list {
       & > svg {
         @apply w-8 h-8;
       }
+    }
+  }
+}
+section > .contact-form {
+  @apply flex flex-col mx-auto gap-8 w-full z-20 relative;
+  & > h4 {
+    @apply text-white;
+  }
+  & > input,
+  & > textarea {
+    @apply mx-auto w-full;
+  }
+  & > .submit {
+    @apply flex flex-col gap-4 justify-center items-end;
+    @apply sm:flex-row sm:items-start;
+    & > button {
+      @apply ml-auto;
     }
   }
 }
