@@ -25,7 +25,6 @@
         </div>
         <div class="links">
           <a :href="project.github" target="_blank">GitHub</a>
-          <!-- <a :href="project.figma" target="_blank">Figma</a> -->
           <a :href="project.demo" target="_blank">Demo</a>
         </div>
       </li>
@@ -47,9 +46,15 @@ locale.value = "es";
 const selected = ref(0);
 const projects = ref([
   {
+    title: "BarChart 📊",
+    github: "https://github.com/phronesys/admetricks-challenge-vue",
+    demo: "https://luxury-hamster-60025b.netlify.app/#/chart",
+    src: "../../barchart.png",
+    id: "barchart",
+  },
+  {
     title: "Hou Movies  🍿🎥",
     github: "https://github.com/phronesys/hou-movies",
-    figma: "https://figma.com/",
     demo: "https://hou-movies.vercel.app/",
     src: "../../houmovies.png",
     id: "houmovies",
@@ -57,7 +62,6 @@ const projects = ref([
   {
     title: "Giftty  🎁🔍",
     github: "https://github.com/phronesys/tenor-angular",
-    figma: "https://figma.com/",
     demo: "https://giftty.netlify.app/",
     src: "../../giftty.png",
     id: "giftty",
@@ -65,7 +69,6 @@ const projects = ref([
   {
     title: "Pokedex  👾👾👾",
     github: "https://github.com/phronesys/pokedex-v2",
-    figma: "https://figma.com/",
     demo: "https://pokedex-gen01.netlify.app/",
     src: "../../pokedex.png",
     id: "pokedex",
@@ -114,14 +117,16 @@ const openDemo = () => {
 <i18n lang="yaml">
 es:
   title: "Mis Proyectos"
-  1: "Lista infinita al hacer scroll con las peliculas de TheMovieDB. Hecho con React y Tailwind"
-  2: "Busca gif's disponibles en la API de Tenor, con autocompletado. Hecho con Angular y Sass"
-  3: "Busca tus pokemones favoritos traidos desde la PokeAPI. Hecho con Vue y Tailwind"
+  1: "Web Component Barchart. Hecho con Vue y D3.js"
+  2: "Lista infinita al hacer scroll con las peliculas de TheMovieDB. Hecho con React y Tailwind"
+  3: "Busca gif's disponibles en la API de Tenor, con autocompletado. Hecho con Angular y Sass"
+  4: "Busca tus pokemones favoritos traidos desde la PokeAPI. Hecho con Vue y Tailwind"
 en:
   title: "My Projects"
-  1: "Infinite scroll with TheMovieDB movies. Made with React + Tailwind"
-  2: "Search gif's with suggestions from Tenor API. Made with Angular + Sass"
-  3: "Search your favorites pokemons from the PokeAPI and see their stats. Made with Vue + Tailwind"
+  1: "Web Component Barchart. Made with Vue and D3.js"
+  2: "Infinite scroll with TheMovieDB movies. Made with React + Tailwind"
+  3: "Search gif's with suggestions from Tenor API. Made with Angular + Sass"
+  4: "Search your favorites pokemons from the PokeAPI and see their stats. Made with Vue + Tailwind"
 </i18n>
 
 <style lang="postcss" scoped>
