@@ -8,143 +8,30 @@
         </a>
       </li>
     </ul>
-    <form
-      v-if="!formSubmitted"
-      class="contact-form"
-      method="post"
-      autocomplete="on"
-      action="javascript:grecaptcha.reset(formCaptcha);"
-    >
-      <base-input v-model="name" :placeholder="t('name')" />
-      <base-input v-model="email" :placeholder="t('email')" type="email" />
-      <base-textarea v-model="message" :placeholder="t('textarea')" />
-      <div class="submit">
-        <div id="captcha"></div>
-        <base-button type="submit" primary @click.prevent="submitEmail">
-          {{ t("button") }}
-        </base-button>
-      </div>
-    </form>
-    <div v-else>
-      <h1 class="text-xl text-white">{{ t("success") }}</h1>
-    </div>
   </section>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
-import Airtable from "airtable";
-
 import IconContact from "../components/IconContact.vue";
-import BaseInput from "../components/BaseInput.vue";
-import BaseButton from "../components/BaseButton.vue";
-import BaseTextarea from "../components/BaseTextarea.vue";
 
-const env = import.meta.env;
-/* airtable config */
-const baseKey = env.VITE_AIRTABLE;
-const airtableBase = new Airtable({ apiKey: env.VITE_API_KEY }).base(baseKey);
-
-/* language */
 const { t, locale } = useI18n({
   inheritLocale: true,
 });
 locale.value = "es";
 
-/* links */
+const contactTitle = (contact) => contact.title.toLowerCase();
 const contactList = ref([
   { title: "Devto", link: "https://dev.to/phronesys" },
   { title: "Github", link: "https://github.com/phronesys" },
   { title: "Linkedin", link: "https://linkedin.com/in/danieldazarola" },
-  {
-    title: "Upwork",
-    link: "https://www.upwork.com/freelancers/~0124080cb096b4e1b3",
-  },
+  // {
+  //   title: "Upwork",
+  //   link: "https://www.upwork.com/freelancers/~0124080cb096b4e1b3",
+  // },
 ]);
 
-/* form */
-const formSubmitted = ref(false);
-const validCaptcha = ref(false);
-const formCaptcha = ref(null);
-const name = ref("");
-const message = ref("");
-const email = ref("");
-
-const contactTitle = (contact) => contact.title.toLowerCase();
-const airtablePost = () => {
-  airtableBase("Messages").create(
-    [
-      {
-        fields: {
-          Name: name.value,
-          Email: email.value,
-          Message: message.value,
-        },
-      },
-    ],
-    (err, records) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      records.forEach((record) => {
-        console.log(record.getId());
-      });
-    }
-  );
-};
-
-const invalidForm = () =>
-  email.value.length === 0 ||
-  name.value.length === 0 ||
-  message.value.length === 0 ||
-  email.value.length > 50 ||
-  name.value.length > 50 ||
-  message.value.length > 300;
-
-const submitEmail = () => {
-  /* verify length */
-  if (invalidForm()) return alert(":-|");
-
-  /* verify email */
-  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-  if (!regex.test(email.value)) return alert("invalid email!!");
-
-  /* verify captcha */
-  if (grecaptcha.getResponse().length === 0) return alert("captcha invalid");
-
-  airtablePost();
-  formSubmitted.value = true;
-};
-
-const verifyCallback = (response) => {};
-
-const onloadCallback = () => {
-  window.formCaptcha = grecaptcha.render("captcha", {
-    theme: "dark",
-    sitekey: env.VITE_CAPTCHA,
-    callback: verifyCallback,
-  });
-};
-
-const injectReCaptcha = () => {
-  /* script api */
-  const script = document.createElement("script");
-  script.src =
-    "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=onload";
-  script.async = true;
-  script.defer = true;
-  document.body.appendChild(script);
-  /* window callbacks */
-  window.verifyCallback = verifyCallback;
-  window.onloadCallback = onloadCallback;
-  window.formCaptcha = formCaptcha;
-};
-
-onMounted(() => {
-  injectReCaptcha();
-});
 </script>
 
 <i18n lang="yaml">
@@ -186,23 +73,6 @@ section > .contact-list {
       & > svg {
         @apply w-8 h-8;
       }
-    }
-  }
-}
-section > .contact-form {
-  @apply flex flex-col mx-auto gap-8 w-full z-20 relative;
-  & > h4 {
-    @apply text-white;
-  }
-  & > input,
-  & > textarea {
-    @apply mx-auto w-full;
-  }
-  & > .submit {
-    @apply flex flex-col gap-4 justify-center items-end;
-    @apply sm:flex-row sm:items-start;
-    & > button {
-      @apply ml-auto;
     }
   }
 }
