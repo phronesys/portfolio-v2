@@ -116,13 +116,13 @@ const openDemo = () => {
 
 <i18n lang="yaml">
 es:
-  title: "Mis Proyectos"
+  title: "Proyectos"
   1: "Web Component Barchart. Hecho con Vue y D3.js"
   2: "Lista infinita al hacer scroll con las peliculas de TheMovieDB. Hecho con React y Tailwind"
   3: "Busca gif's disponibles en la API de Tenor, con autocompletado. Hecho con Angular y Sass"
   4: "Busca tus pokemones favoritos traidos desde la PokeAPI. Hecho con Vue y Tailwind"
 en:
-  title: "My Projects"
+  title: "Projects"
   1: "Web Component Barchart. Made with Vue and D3.js"
   2: "Infinite scroll with TheMovieDB movies. Made with React + Tailwind"
   3: "Search gif's with suggestions from Tenor API. Made with Angular + Sass"
@@ -131,9 +131,9 @@ en:
 
 <style lang="postcss" scoped>
 section {
-  @apply h-[max-content] w-full text-white overflow-hidden z-[1];
-  @apply flex flex-col gap-5 items-center mx-auto relative;
-  @apply lg:w-11/12 xl:w-[950px] 2xl:w-[1200px] lg:flex-row-reverse;
+  @apply min-h-[max-content] w-full text-white overflow-hidden z-[1] py-32 lg:py-64;
+  @apply flex flex-col gap-10 items-center relative;
+  @apply bg-gradient-to-b from-gray-900/20 via-gray-900/30 to-gray-900/20 ;
   & > .head {
     @apply flex flex-col gap-4 mx-auto;
     & > h1 {
@@ -151,7 +151,7 @@ section {
     }
   }
   & > ul {
-    @apply flex flex-col gap-4 w-full h-full;
+    @apply flex flex-col gap-4 w-full max-h-[400px] overflow-y-scroll;
     @apply md:w-[550px] 2xl:w-[700px];
   }
 }
@@ -182,7 +182,7 @@ section > ul > li {
   }
   &:hover,
   &.selected {
-    @apply border-pink-600 bg-black;
+    @apply border-pink-600 bg-gray-900/30;
     @apply shadow-pink-500/50;
     & > .links > a {
       @apply from-pink-200 via-purple-400 to-pink-400;

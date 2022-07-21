@@ -1,22 +1,24 @@
 <template>
   <section>
-    <div class="text">
-      <h1>{{ t("title") }}</h1>
-      <p>{{ t("p1") }}</p>
-      <p>{{ t("p2") }}</p>
+    <div class="wrapper">
+      <div class="text">
+        <h1>{{ t("title") }}</h1>
+        <p>{{ t("p1") }}</p>
+        <p>{{ t("p2") }}</p>
+      </div>
+      <ul class="skill-list" ref="skillList">
+        <li
+          v-for="(skill, index) in skills"
+          :key="skill.title"
+          :title="skill.title"
+          :class="{ focus: focus === index }"
+        >
+          <a :href="skill.link" target="_blank">
+            <icon-skills :name="skill.title.toLowerCase()"></icon-skills>
+          </a>
+        </li>
+      </ul>
     </div>
-    <ul class="skill-list" ref="skillList">
-      <li
-        v-for="(skill, index) in skills"
-        :key="skill.title"
-        :title="skill.title"
-        :class="{ focus: focus === index }"
-      >
-        <a :href="skill.link" target="_blank">
-          <icon-skills :name="skill.title.toLowerCase()"></icon-skills>
-        </a>
-      </li>
-    </ul>
   </section>
 </template>
 
@@ -124,7 +126,11 @@ en:
 
 <style lang="postcss" scoped>
 section {
-  @apply flex flex-col gap-20 relative z-[2] mx-auto w-11/12;
+  @apply w-full z-[2];
+  @apply bg-gradient-to-b from-gray-900/20 via-gray-900/30 to-gray-900/20;
+}
+section .wrapper {
+  @apply flex flex-col gap-20 relative  mx-auto w-11/12 py-32 lg:py-64;
   @apply lg:flex-row lg:justify-center lg:w-3/4 lg:gap-10;
   @apply xl:w-1/2;
   @apply text-white;
@@ -137,7 +143,7 @@ section {
     }
   }
 }
-section > .skill-list {
+section .wrapper > .skill-list {
   & > li {
     @apply cursor-pointer bg-gray-900/80 shadow-inner shadow-green-500/20  rounded-xl min-w-[32px] min-h-[32px] w-16 h-16;
     @apply filter transition-colors duration-300 ease-linear;
@@ -154,7 +160,7 @@ section > .skill-list {
   }
 }
 /* grid */
-section > .skill-list {
+section .wrapper > .skill-list {
   @apply max-w-[500px] mx-auto flex flex-row flex-wrap justify-center gap-5 lg:grid;
   grid-template-areas:
     "a b c d e"

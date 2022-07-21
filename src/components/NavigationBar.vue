@@ -1,51 +1,51 @@
 <template>
   <section>
     <svg-logo />
-    <navigation-content v-if="width > 640"></navigation-content>
-    <div class="burger" :class="{ open }" v-else @click="showOptions">
-      <div />
-      <div />
-      <div />
+    <div class="nav-content">
+      <div class="language">
+        <svg-flag-spain
+          :class="{ selected: !english }"
+          @click="setLanguage('es')"
+        />
+        <base-switch v-model="english" />
+        <svg-flag-usa
+          :class="{ selected: english }"
+          @click="setLanguage('en')"
+        />
+      </div>
     </div>
   </section>
-  <navigation-modal :open="open" :width="width">
-    <navigation-content @close-modal="openSidebar = false"></navigation-content>
-  </navigation-modal>
 </template>
 
-<script>
-import NavigationContent from "./NavigationContent.vue";
-import NavigationModal from "./NavigationModal.vue";
-import useBreakpoints from "../modules/useBreakpoints";
-import SvgLogo from "./svg/SvgLogo.vue";
+<i18n lang="yaml">
+es:
+  button:
+    about: "Acerca"
+    contact: "Contáctame"
+en:
+  button:
+    about: "About"
+    contact: "Contact"
+</i18n>
 
-export default {
-  name: "NavigationBar",
-  components: {
-    NavigationContent,
-    NavigationModal,
-    SvgLogo,
-  },
-  setup: () => {
-    const { width, type } = useBreakpoints();
-    return {
-      width,
-      type,
-    };
-  },
-  data: () => ({
-    openSidebar: false,
-  }),
-  computed: {
-    open() {
-      return this.openSidebar;
-    },
-  },
-  methods: {
-    showOptions() {
-      this.openSidebar = !this.openSidebar;
-    },
-  },
+<script setup>
+import SvgLogo from "./svg/SvgLogo.vue";
+import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+
+import BaseSwitch from "./BaseSwitch.vue";
+import SvgFlagSpain from "./svg/SvgFlagSpain.vue";
+import SvgFlagUsa from "./svg/SvgFlagUsa.vue";
+
+const english = ref(false);
+const { t, locale } = useI18n({
+  inheritLocale: true,
+});
+locale.value = "es";
+
+const setLanguage = (l) => {
+  if(l === 'en') english.value = true;
+  else english.value = false;
 };
 </script>
 
@@ -57,22 +57,18 @@ section {
   & > svg {
     @apply w-24 xl:w-32;
   }
-  & > .burger {
-    @apply w-6 h-4 relative ml-auto flex flex-col justify-between;
-    @apply cursor-pointer;
-    & > div {
-      @apply w-6 h-0.5 bg-white transition-all ease-linear duration-200;
-    }
-  }
-  & > .burger.open {
-    & > div:nth-child(1) {
-      @apply translate-y-1.5 -rotate-45;
-    }
-    & > div:nth-child(2) {
-      @apply bg-transparent;
-    }
-    & > div:nth-child(3) {
-      @apply -translate-y-2 rotate-45;
+}
+
+section .nav-content {
+  @apply flex flex-row items-center gap-10;
+  & .language {
+    @apply flex flex-row items-center gap-4 min-w-[96px];
+    & > svg {
+      @apply w-7 h-7 border-2 border-transparent rounded-full;
+      @apply transition-colors duration-200 ease-in;
+      &.selected {
+        @apply border-pink-600;
+      }
     }
   }
 }

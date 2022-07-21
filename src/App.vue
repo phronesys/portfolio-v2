@@ -4,7 +4,6 @@
     <section-landing></section-landing>
     <section-projects></section-projects>
     <section-skills></section-skills>
-    <section-contact id="contact"></section-contact>
   </div>
 
   <div id="container"></div>
@@ -15,7 +14,6 @@ import NavigationBar from "./components/NavigationBar.vue";
 import SectionLanding from "./sections/Landing.vue";
 import SectionProjects from "./sections/Projects.vue";
 import SectionSkills from "./sections/Skills.vue";
-import SectionContact from "./sections/Contact.vue";
 
 import { onMounted } from "vue";
 import { useThree } from "./modules/useThreeBackground";
@@ -33,7 +31,7 @@ onMounted(() => {
   -moz-osx-font-smoothing: grayscale;
 }
 .main {
-  @apply px-8 py-32 flex flex-col gap-40 z-10 lg:gap-60 xl:gap-80 2xl:gap-[400px];
+  @apply flex flex-col z-10;
 }
 #container {
   @apply bg-black fixed z-0 top-0 left-0 right-0 bottom-0;

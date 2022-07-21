@@ -1,17 +1,17 @@
 <template>
   <section>
     <h1>
-      {{ t("title.greeting") }} <br />
-      {{ t("title.name") }} <br /><span>{{ t("title.job") }}</span>
+      {{ t("title.name") }}
     </h1>
     <h3>
-      {{ t("subtitle.verb") }}<br />
-      <span>{{ t("subtitle.subject") }}</span>
+      {{ t("title.job") }}
     </h3>
+    <contact-list></contact-list>
   </section>
 </template>
 
 <script setup>
+import ContactList from "../components/ContactList.vue";
 import { useI18n } from "vue-i18n";
 
 const { t, locale } = useI18n({
@@ -24,39 +24,29 @@ locale.value = "es";
 <i18n lang="yaml">
 es:
   title:
-    greeting: "Hola que tal! "
-    name: "Soy Daniel Dazarola"
-    job: "un Desarrollador Front End"
-  subtitle:
-    verb: "Uso las últimas tecnologías para armar "
-    subject: "poderosas aplicaciones web"
+    name: "Daniel Dazarola"
+    job: "Desarrollador Front-End"
 en:
   title:
-    greeting: "Hi there! "
-    name: "I'm Daniel Dazarola"
-    job: "a Front End Developer"
-  subtitle:
-    verb: "I use the latest tech to build"
-    subject: "powerful web applications"
+    name: "Daniel Dazarola"
+    job: "Front-End Developer"
 </i18n>
 
 <style lang="postcss" scoped>
 section {
-  @apply relative w-max text-white overflow-hidden z-[1];
-  @apply flex flex-col gap-4 mx-auto;
-  @apply bg-gradient-to-r from-black to-transparent opacity-90;
-  @apply lg:gap-10;
+  @apply relative text-white overflow-hidden z-[1] w-full pt-32 lg:py-[200px];
+  @apply flex flex-col gap-4 justify-center items-center;
+  @apply bg-gradient-to-b from-gray-900/20 via-gray-900/30 to-gray-900/20;
   & h1 {
     @apply text-2xl leading-8;
     @apply xs:text-4xl sm:text-5xl md:text-6xl xl:text-7xl;
     @apply lg:leading-snug;
-    @apply bg-gradient-to-l from-green-500 via-green-500 to-white text-transparent bg-clip-text;
   }
   & h3 {
     @apply text-xl leading-tight;
     @apply lg:leading-snug xl:leading-normal;
     @apply xs:text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
-    @apply bg-gradient-to-l from-purple-500 via-purple-400 to-white text-transparent bg-clip-text;
+    @apply text-purple-500;
   }
 }
 </style>
